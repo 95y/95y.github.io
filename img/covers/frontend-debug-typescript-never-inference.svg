@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">TypeScript never 排查：类型为什么被收窄到不可能</title>
+  <desc id="desc">TypeScript 技术文章封面</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b0764"/>
+      <stop offset="0.58" stop-color="#9333ea"/>
+      <stop offset="1" stop-color="#e879f9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
+      <path d="M38 0H0V38" fill="none" stroke="#fff" stroke-opacity=".07"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity=".3"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="630" rx="28" fill="url(#grid)"/>
+  <circle cx="1030" cy="110" r="280" fill="url(#glow)"/>
+  <circle cx="1030" cy="316" r="176" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="2" stroke-dasharray="9 13" transform="rotate(40 1030 316)"/>
+  <circle cx="1030" cy="316" r="74" fill="#fff" fill-opacity=".12" stroke="#fff" stroke-opacity=".42"/>
+  <path d="M992 316h76M1030 278v76" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".78"/>
+  <g filter="url(#shadow)">
+    <rect x="72" y="62" width="270" height="44" rx="22" fill="#fff" fill-opacity=".14" stroke="#fff" stroke-opacity=".3"/>
+    <text x="94" y="91" fill="#fff" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="700" letter-spacing="2">DEBUGGING FIELD GUIDE</text>
+  </g>
+  <text fill="#fff" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="50" font-weight="800" letter-spacing="-1"><tspan x="72" y="238">TypeScript never 排查：类型</tspan><tspan x="72" y="306">为什么被收窄到不可能</tspan></text>
+  <g transform="translate(72 516)">
+    <rect width="154" height="46" rx="23" fill="#fff" fill-opacity=".16" stroke="#fff" stroke-opacity=".28"/>
+    <text x="77" y="30" text-anchor="middle" fill="#fff" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="700">FIX &amp; PREVENT</text>
+    <text x="178" y="30" fill="#fff" fill-opacity=".86" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="600">TypeScript</text>
+  </g>
+  <text x="1128" y="578" text-anchor="end" fill="#fff" fill-opacity=".72" font-family="Inter, sans-serif" font-size="18" font-weight="700" letter-spacing="2">95Y.DEV</text>
+</svg>
