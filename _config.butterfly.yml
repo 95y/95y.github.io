@@ -1,0 +1,177 @@
+# 导航栏
+nav:
+  logo:
+  display_title: true
+  fixed: false
+
+menu:
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  关于: /about/ || fas fa-user
+
+# 站点图标与头像
+favicon: /img/favicon.png
+avatar:
+  img: /img/favicon.png
+  effect: true
+
+# 首页标题与背景
+subtitle:
+  enable: true
+  effect: true
+  typed_option:
+  source: false
+  sub:
+    - 记录技术，也记录成长
+    - 保持好奇，持续折腾
+
+index_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg
+default_top_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.jpg
+archive_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/archive.jpg
+tag_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/tag.jpg
+category_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/category.jpg
+
+# 文章封面
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  default_cover:
+    - https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.jpg
+
+# 代码块
+code_blocks:
+  theme: light
+  macStyle: true
+  height_limit: false
+  word_wrap: false
+  copy: true
+  language: true
+  shrink: false
+  fullpage: true
+
+# 社交链接
+social:
+  fab fa-github: https://github.com/95y || GitHub
+
+# 深色模式
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: false
+
+# 侧边栏
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  display:
+    archive: true
+    tag: true
+    category: true
+  card_author:
+    enable: true
+    description: 记录开发实践、效率工具和生活思考
+    button:
+      enable: true
+      icon: fab fa-github
+      text: GitHub
+      link: https://github.com/95y
+  card_announcement:
+    enable: true
+    content: 欢迎来到小辣条的个人博客
+  card_recent_post:
+    enable: true
+    limit: 5
+    sort: date
+    sort_order:
+  card_categories:
+    enable: true
+    limit: 8
+    expand: none
+    sort_order:
+  card_tags:
+    enable: true
+    limit: 20
+    color: false
+    orderby: random
+    order: 1
+    sort_order:
+  card_archives:
+    enable: true
+    type: monthly
+    format: MMMM YYYY
+    order: -1
+    limit: 8
+    sort_order:
+  card_webinfo:
+    enable: true
+    post_count: true
+    last_push_date: true
+    sort_order:
+
+# 文章设置
+post_meta:
+  page:
+    date_type: created
+    date_format: date
+    categories: true
+    tags: false
+    label: true
+  post:
+    position: left
+    date_type: both
+    date_format: date
+    categories: true
+    tags: true
+    label: true
+
+toc:
+  post: true
+  page: false
+  number: true
+  expand: false
+  style_simple: false
+  scroll_percent: true
+
+post_copyright:
+  enable: true
+  decode: false
+  author_href: https://github.com/95y
+  license: CC BY-NC-SA 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+# 页面体验
+readmode: true
+rightside_scroll_percent: true
+translate:
+  enable: true
+  default: 简
+  defaultEncoding: 2
+  translateDelay: 0
+  msgToTraditionalChinese: 繁
+  msgToSimplifiedChinese: 簡
+
+footer:
+  owner:
+    enable: true
+    since: 2022
+  custom_text: 基于 Hexo 与 Butterfly 构建
+  copyright:
+    enable: true
+    version: true
+
+# 搜索和评论暂不启用
+local_search:
+  enable: false
+
+comments:
+  use:
+  text: true
+  lazyload: false
+  count: false
+  card_post_count: false
