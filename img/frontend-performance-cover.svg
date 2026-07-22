@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">前端性能优化文章封面</title>
+  <desc id="desc">浏览器窗口、性能仪表与上升曲线组成的蓝紫色插画</desc>
+  <defs>
+    <linearGradient id="perfBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.55" stop-color="#1e3a8a"/>
+      <stop offset="1" stop-color="#5b21b6"/>
+    </linearGradient>
+    <linearGradient id="perfLine" x1="0" y1="1" x2="1" y2="0">
+      <stop stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <filter id="perfShadow"><feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#020617" flood-opacity=".38"/></filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#perfBg)"/>
+  <g opacity=".08" stroke="#fff">
+    <path d="M0 112H1200M0 225H1200M0 338H1200M0 451H1200M0 564H1200"/>
+    <path d="M150 0V675M300 0V675M450 0V675M600 0V675M750 0V675M900 0V675M1050 0V675"/>
+  </g>
+  <g transform="translate(120 118)" filter="url(#perfShadow)">
+    <rect width="690" height="440" rx="28" fill="#f8fafc"/>
+    <path d="M0 28A28 28 0 0 1 28 0h634a28 28 0 0 1 28 28v42H0V28Z" fill="#e2e8f0"/>
+    <circle cx="38" cy="35" r="8" fill="#fb7185"/>
+    <circle cx="64" cy="35" r="8" fill="#fbbf24"/>
+    <circle cx="90" cy="35" r="8" fill="#34d399"/>
+    <rect x="44" y="108" width="218" height="26" rx="13" fill="#1e293b"/>
+    <rect x="44" y="158" width="430" height="14" rx="7" fill="#94a3b8"/>
+    <rect x="44" y="188" width="352" height="14" rx="7" fill="#cbd5e1"/>
+    <path d="M50 360C145 330 186 268 266 302s122-84 214-54 112-74 164-94" fill="none" stroke="url(#perfLine)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="644" cy="154" r="12" fill="#7c3aed"/>
+  </g>
+  <g transform="translate(860 160)">
+    <circle cx="100" cy="100" r="94" fill="#0f172a" stroke="#60a5fa" stroke-width="12"/>
+    <path d="M100 28A72 72 0 1 1 42 57" fill="none" stroke="#22d3ee" stroke-width="14" stroke-linecap="round"/>
+    <text x="100" y="116" text-anchor="middle" font-family="system-ui, sans-serif" font-size="58" font-weight="700" fill="#fff">98</text>
+    <rect x="0" y="238" width="200" height="64" rx="18" fill="#fff" fill-opacity=".12" stroke="#fff" stroke-opacity=".22"/>
+    <text x="100" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#e0f2fe">WEB VITALS</text>
+  </g>
+</svg>

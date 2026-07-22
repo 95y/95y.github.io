@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Chili Hong</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>https://95y.github.io/</id>
+  <link href="https://95y.github.io/" rel="alternate"/>
+  <link href="https://95y.github.io/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, Chili Hong</rights>
+  <subtitle>前端开发 · 工程实践 · 效率工具</subtitle>
+  <title>小辣条</title>
+  <updated>2026-07-22T09:15:00.000Z</updated>
+  <entry>
+    <author>
+      <name>Chili Hong</name>
+    </author>
+    <category term="前端开发" scheme="https://95y.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    <category term="前端性能" scheme="https://95y.github.io/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD/"/>
+    <category term="Core Web Vitals" scheme="https://95y.github.io/tags/Core-Web-Vitals/"/>
+    <category term="工程化" scheme="https://95y.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
+    <id>https://95y.github.io/2026/07/22/frontend-performance-core-web-vitals/</id>
+    <link href="https://95y.github.io/2026/07/22/frontend-performance-core-web-vitals/"/>
+    <published>2026-07-22T09:15:00.000Z</published>
+    <summary>从 LCP、INP、CLS 出发，建立一套覆盖测量、网络、资源加载、JavaScript 执行和渲染稳定性的前端性能优化方法。</summary>
+    <title>前端性能优化实战：围绕 Core Web Vitals 建立系统方法</title>
+    <updated>2026-07-22T09:15:00.000Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Chili Hong</name>
+    </author>
+    <category term="博客" scheme="https://95y.github.io/categories/%E5%8D%9A%E5%AE%A2/"/>
+    <category term="Hexo" scheme="https://95y.github.io/tags/Hexo/"/>
+    <id>https://95y.github.io/2022/01/18/test-my-site/</id>
+    <link href="https://95y.github.io/2022/01/18/test-my-site/"/>
+    <published>2022-01-18T07:27:26.000Z</published>
+    <summary>博客创建时保留的站点测试文章。</summary>
+    <title>test_my_site</title>
+    <updated>2022-01-18T07:27:26.000Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Chili Hong</name>
+    </author>
+    <category term="博客" scheme="https://95y.github.io/categories/%E5%8D%9A%E5%AE%A2/"/>
+    <category term="Hexo" scheme="https://95y.github.io/tags/Hexo/"/>
+    <id>https://95y.github.io/2022/01/18/hello-world/</id>
+    <link href="https://95y.github.io/2022/01/18/hello-world/"/>
+    <published>2022-01-18T07:26:34.000Z</published>
+    <summary>Hexo 创建博客时生成的第一篇文章。</summary>
+    <title>Hello World</title>
+    <updated>2022-01-18T07:26:34.000Z</updated>
+  </entry>
+</feed>
