@@ -37,7 +37,7 @@
     <id>https://95y.github.io/2026/07/15/frontend-chronicle-2026-07-typescript-6-node-26-vite-8-1/</id>
     <link href="https://95y.github.io/2026/07/15/frontend-chronicle-2026-07-typescript-6-node-26-vite-8-1/"/>
     <published>2026-07-15T01:00:00.000Z</published>
-    <summary>截至 2026 年 7 月，TypeScript 6 作为通往原生 TypeScript 7 的过渡版本，Node 26 默认启用 Temporal，Vite 8.1 则继续探索大型项目的 bundled dev mode。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>三张独立升级工单：TypeScript 6 进入主线，Node 26 留在 canary，Vite 8.1 bundled dev 只给超大后台实验。</summary>
     <title>工具链进入新阶段：TypeScript 6、Node 26 与 Vite 8.1</title>
     <updated>2026-07-15T01:00:00.000Z</updated>
   </entry>
@@ -51,7 +51,7 @@
     <id>https://95y.github.io/2026/04/17/frontend-debug-frontend-memory-leak/</id>
     <link href="https://95y.github.io/2026/04/17/frontend-debug-frontend-memory-leak/"/>
     <published>2026-04-17T06:00:00.000Z</published>
-    <summary>页面使用时间越长越卡，刷新后恢复。从症状、根因、定位步骤到修复与预防，给出完整排查路径。</summary>
+    <summary>工单页反复切换后内存涨到 1.5GB：用三张 Heap Snapshot 沿 window listener 找到 controller 与 Blob 保留链。</summary>
     <title>前端内存泄漏排查：监听器、闭包与未释放组件</title>
     <updated>2026-04-17T06:00:00.000Z</updated>
   </entry>
@@ -66,7 +66,7 @@
     <id>https://95y.github.io/2026/03/12/frontend-chronicle-2026-03-vite-8-rolldown/</id>
     <link href="https://95y.github.io/2026/03/12/frontend-chronicle-2026-03-vite-8-rolldown/"/>
     <published>2026-03-12T01:00:00.000Z</published>
-    <summary>Vite 8 正式发布，以 Rolldown 作为统一的 Rust 打包器。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>从三个月 Beta 影子构建走到 Vite 8 正式上线：隔离 bundler 变化、比较两份 dist、验证插件和回退链路。</summary>
     <title>Vite 8：Rolldown 统一内核正式落地</title>
     <updated>2026-03-12T01:00:00.000Z</updated>
   </entry>
@@ -81,7 +81,7 @@
     <id>https://95y.github.io/2026/02/24/frontend-chronicle-2026-02-react-foundation/</id>
     <link href="https://95y.github.io/2026/02/24/frontend-chronicle-2026-02-react-foundation/"/>
     <published>2026-02-24T01:00:00.000Z</published>
-    <summary>React Foundation 在 Linux Foundation 下成立，React 的治理从单一公司主导迈向更独立的组织结构。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>React Foundation 正式落地后，普通项目无需改代码，但应该重新检查关键依赖负责人、官方安全源与供应链响应。</summary>
     <title>React Foundation：核心项目进入更独立的治理阶段</title>
     <updated>2026-02-24T01:00:00.000Z</updated>
   </entry>
@@ -96,7 +96,7 @@
     <id>https://95y.github.io/2025/12/03/frontend-chronicle-2025-12-vite-8-beta-rolldown/</id>
     <link href="https://95y.github.io/2025/12/03/frontend-chronicle-2025-12-vite-8-beta-rolldown/"/>
     <published>2025-12-03T01:00:00.000Z</published>
-    <summary>Vite 8 Beta 完整集成 Rolldown，准备结束开发阶段使用 esbuild、生产阶段使用 Rollup 的双内核历史。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>没有把 Vite 8 Beta 直接上线，而是让 CI 生成两份产物；影子构建提前找出插件顺序与动态导入问题。</summary>
     <title>Vite 8 Beta：Rolldown 开始统一开发与生产构建</title>
     <updated>2025-12-03T01:00:00.000Z</updated>
   </entry>
@@ -111,7 +111,7 @@
     <id>https://95y.github.io/2025/10/21/frontend-chronicle-2025-10-react-compiler-next-16/</id>
     <link href="https://95y.github.io/2025/10/21/frontend-chronicle-2025-10-react-compiler-next-16/"/>
     <published>2025-10-21T01:00:00.000Z</published>
-    <summary>React Compiler 1.0 稳定发布；Next.js 16 随后提供稳定集成，并让 Turbopack 成为默认打包器。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>在一张排班表中增量启用 React Compiler，先修不纯渲染，再与手工 memo、Next 16 Turbopack 分开验证。</summary>
     <title>React Compiler 1.0 与 Next.js 16：自动优化进入框架主线</title>
     <updated>2025-10-21T01:00:00.000Z</updated>
   </entry>
@@ -125,7 +125,7 @@
     <id>https://95y.github.io/2025/08/15/frontend-debug-typescript-never-inference/</id>
     <link href="https://95y.github.io/2025/08/15/frontend-debug-typescript-never-inference/"/>
     <published>2025-08-15T06:00:00.000Z</published>
-    <summary>属性访问报 Property does not exist on type never。从症状、根因、定位步骤到修复与预防，给出完整排查路径。</summary>
+    <summary>把 never 当成“这里已无可能值”的诊断信号，逐例排查空数组、穷尽分支、错误守卫、条件类型与 React ref。</summary>
     <title>TypeScript never 排查：类型为什么被收窄到不可能</title>
     <updated>2025-08-15T06:00:00.000Z</updated>
   </entry>
@@ -140,7 +140,7 @@
     <id>https://95y.github.io/2025/06/24/frontend-chronicle-2025-06-vite-7-baseline/</id>
     <link href="https://95y.github.io/2025/06/24/frontend-chronicle-2025-06-vite-7-baseline/"/>
     <published>2025-06-24T01:00:00.000Z</published>
-    <summary>Vite 7 提高 Node.js 版本要求，并把默认浏览器目标与 Web Platform Baseline 对齐，减少对过旧环境的转换负担。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>Vite 7 对齐 Baseline 后，真实仓储 PDA WebView 仍不能忽略：怎样把浏览器支持写成数据与退役计划。</summary>
     <title>Vite 7：现代浏览器 Baseline 与 Node 20 基线</title>
     <updated>2025-06-24T01:00:00.000Z</updated>
   </entry>
@@ -155,7 +155,7 @@
     <id>https://95y.github.io/2025/02/14/frontend-chronicle-2025-02-tailwind-4-and-cra-sunset/</id>
     <link href="https://95y.github.io/2025/02/14/frontend-chronicle-2025-02-tailwind-4-and-cra-sunset/"/>
     <published>2025-02-14T01:00:00.000Z</published>
-    <summary>Tailwind CSS 4 使用新的高性能引擎与 CSS-first 配置；React 团队随后停止推荐 Create React App，建议新项目采用框架或 Vite 等构建工具。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>Tailwind 4 与 CRA 退场都在提醒我们默认会过期：一边做样式视觉迁移，一边重新选择 React 项目架构。</summary>
     <title>Tailwind CSS 4 与 CRA 退场：工具链继续现代化</title>
     <updated>2025-02-14T01:00:00.000Z</updated>
   </entry>
@@ -170,7 +170,7 @@
     <id>https://95y.github.io/2024/12/05/frontend-chronicle-2024-12-react-19-actions/</id>
     <link href="https://95y.github.io/2024/12/05/frontend-chronicle-2024-12-react-19-actions/"/>
     <published>2024-12-05T01:00:00.000Z</published>
-    <summary>React 19 正式发布，围绕异步 Actions、表单状态、资源预加载和服务器组件集成完善 API。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>用修改昵称和评论点赞两个功能试用 React 19 Actions、useActionState 与 useOptimistic，并补齐失败和安全边界。</summary>
     <title>React 19：Actions、use 与表单异步状态</title>
     <updated>2024-12-05T01:00:00.000Z</updated>
   </entry>
@@ -185,7 +185,7 @@
     <id>https://95y.github.io/2024/11/26/frontend-chronicle-2024-11-vite-6-environment-api/</id>
     <link href="https://95y.github.io/2024/11/26/frontend-chronicle-2024-11-vite-6-environment-api/"/>
     <published>2024-11-26T01:00:00.000Z</published>
-    <summary>Vite 6 推出实验性 Environment API，让框架可以为客户端、SSR、边缘或其他运行时定义不同模块执行环境。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>从一个 SSR 插件的三个错误假设出发，理解 Vite 6 Environment API 为何主要面向框架与插件作者。</summary>
     <title>Vite 6：Environment API 面向多运行时框架</title>
     <updated>2024-11-26T01:00:00.000Z</updated>
   </entry>
@@ -200,7 +200,7 @@
     <id>https://95y.github.io/2024/10/21/frontend-chronicle-2024-10-nextjs-15-caching/</id>
     <link href="https://95y.github.io/2024/10/21/frontend-chronicle-2024-10-nextjs-15-caching/"/>
     <published>2024-10-21T01:00:00.000Z</published>
-    <summary>Next.js 15 发布，调整 fetch、GET Route Handler 和客户端路由缓存默认行为，并将 Turbopack 开发模式标记稳定。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>Next.js 15 缓存默认值调整后，先为文章、库存和用户资料定义新鲜度，再迁 GET Handler 与客户端导航。</summary>
     <title>Next.js 15：缓存默认值调整与 Turbopack Dev 稳定</title>
     <updated>2024-10-21T01:00:00.000Z</updated>
   </entry>
@@ -215,7 +215,7 @@
     <id>https://95y.github.io/2024/09/03/frontend-chronicle-2024-09-vue-3-5-reactivity/</id>
     <link href="https://95y.github.io/2024/09/03/frontend-chronicle-2024-09-vue-3-5-reactivity/"/>
     <published>2024-09-03T01:00:00.000Z</published>
-    <summary>Vue 3.5 发布，重构响应式系统，并改进 props 解构、SSR 水合和自定义元素能力。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>用一个实时搜索组件串起 Vue 3.5 的响应式 props 解构、watcher 清理、模板 ref 与 SSR 延迟水合。</summary>
     <title>Vue 3.5：响应式性能、解构与 SSR 细节继续成熟</title>
     <updated>2024-09-03T01:00:00.000Z</updated>
   </entry>
@@ -229,7 +229,7 @@
     <id>https://95y.github.io/2024/08/16/frontend-debug-ssr-hydration-mismatch/</id>
     <link href="https://95y.github.io/2024/08/16/frontend-debug-ssr-hydration-mismatch/"/>
     <published>2024-08-16T06:00:00.000Z</published>
-    <summary>页面首次加载闪烁并出现水合不匹配警告。从症状、根因、定位步骤到修复与预防，给出完整排查路径。</summary>
+    <summary>只在生产首屏出现的 hydration mismatch，最终来自服务器 UTC、浏览器时区和两次不同的 Date.now。</summary>
     <title>Hydration mismatch 排查：服务端 HTML 为什么和客户端不同</title>
     <updated>2024-08-16T06:00:00.000Z</updated>
   </entry>
@@ -244,7 +244,7 @@
     <id>https://95y.github.io/2023/11/16/frontend-chronicle-2023-11-vite-5-rollup-4/</id>
     <link href="https://95y.github.io/2023/11/16/frontend-chronicle-2023-11-vite-5-rollup-4/"/>
     <published>2023-11-16T01:00:00.000Z</published>
-    <summary>Vite 5 切换到 Rollup 4，要求 Node.js 18/20+，清理废弃 API，并继续改善开发服务器性能分析能力。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>一份 Vite 5 升级日志：先统一 Node，再迁 CJS 配置，最后比较 Rollup 4 的两份 dist 与插件矩阵。</summary>
     <title>Vite 5：Rollup 4 与现代 Node 基线</title>
     <updated>2023-11-16T01:00:00.000Z</updated>
   </entry>
@@ -259,7 +259,7 @@
     <id>https://95y.github.io/2023/09/08/frontend-chronicle-2023-09-bun-1-runtime-toolkit/</id>
     <link href="https://95y.github.io/2023/09/08/frontend-chronicle-2023-09-bun-1-runtime-toolkit/"/>
     <published>2023-09-08T01:00:00.000Z</published>
-    <summary>Bun 1.0 发布，将 JavaScript 运行时、包管理、测试和打包能力放进一个工具，强调启动与安装性能。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>Bun 1.0 试用报告：安装、测试与小服务很顺，原生模块、lockfile、代理和生产观测为什么仍需逐项验证。</summary>
     <title>Bun 1.0：运行时、包管理器与构建工具走向一体化</title>
     <updated>2023-09-08T01:00:00.000Z</updated>
   </entry>
@@ -273,7 +273,7 @@
     <id>https://95y.github.io/2023/08/18/frontend-debug-esm-cjs-module-errors/</id>
     <link href="https://95y.github.io/2023/08/18/frontend-debug-esm-cjs-module-errors/"/>
     <published>2023-08-18T06:00:00.000Z</published>
-    <summary>运行时报 ERR_REQUIRE_ESM 或 require is not defined。从症状、根因、定位步骤到修复与预防，给出完整排查路径。</summary>
+    <summary>从 ERR_REQUIRE_ESM 出发，核对实际文件格式、package type、exports、TypeScript 输出与 default 互操作。</summary>
     <title>ESM/CJS 混用排查：ERR_REQUIRE_ESM 与默认导入错误</title>
     <updated>2023-08-18T06:00:00.000Z</updated>
   </entry>
@@ -288,7 +288,7 @@
     <id>https://95y.github.io/2023/05/04/frontend-chronicle-2023-05-nextjs-app-router-stable/</id>
     <link href="https://95y.github.io/2023/05/04/frontend-chronicle-2023-05-nextjs-app-router-stable/"/>
     <published>2023-05-04T01:00:00.000Z</published>
-    <summary>Next.js 13.4 将 App Router 标记为稳定，Server Components、嵌套路由和 Server Actions alpha 进入更广泛生产实践。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>App Router 稳定后迁一个真实商品分类页，重点不是目录，而是客户端边界、缓存失效与生产验收指标。</summary>
     <title>Next.js 13.4：App Router 稳定后的缓存与边界课题</title>
     <updated>2023-05-04T01:00:00.000Z</updated>
   </entry>
@@ -303,7 +303,7 @@
     <id>https://95y.github.io/2022/12/09/frontend-chronicle-2022-12-vite-4-ecosystem/</id>
     <link href="https://95y.github.io/2022/12/09/frontend-chronicle-2022-12-vite-4-ecosystem/"/>
     <published>2022-12-09T01:00:00.000Z</published>
-    <summary>Vite 4 升级 Rollup 3，并伴随 Vitest、VitePress 以及多个元框架形成更完整生态。梳理核心变化、工程影响与今天的实践建议。</summary>
+    <summary>Vite 4 时代的 monorepo 工具链整理：共享 alias、Vitest 转换、Rollup 插件测试与源码包出口边界。</summary>
     <title>Vite 4：共享工具链生态进入稳定扩张期</title>
     <updated>2022-12-09T01:00:00.000Z</updated>
   </entry>
