@@ -25,6 +25,17 @@ npm run new -- "文章标题"
 
 文章位于 `source/_posts`。
 
+## 前端专题文章
+
+- `前端年鉴`：从 2017 年 4 月 jQuery 开始，记录 2017–2026 的关键技术演进
+- `前端排障`：整理事件循环、响应式、模块系统、缓存、水合与内存泄漏等常见难题
+
+专题源数据与生成模板位于 `tools/generate-frontend-chronicle.mjs`。需要重新生成时运行：
+
+```bash
+npm run generate:chronicle
+```
+
 ## 构建
 
 ```bash

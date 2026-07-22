@@ -9,6 +9,7 @@
     "server": "hexo server",
     "build": "hexo clean && hexo generate",
     "deploy": "hexo clean && hexo generate && hexo deploy",
+    "generate:chronicle": "node tools/generate-frontend-chronicle.mjs",
     "new": "hexo new"
   },
   "engines": {
