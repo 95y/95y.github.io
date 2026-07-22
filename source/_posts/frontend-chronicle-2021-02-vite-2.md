@@ -12,23 +12,13 @@ cover: /img/covers/frontend-chronicle-vite-2.svg
 top_img: /img/covers/frontend-chronicle-vite-2.svg
 toc: true
 ---
-整理这段历史时，我更想回答一个实际问题：这次升级到底替开发者省掉了什么，又带来了哪些新的约束？
+这不是一篇发布日志翻译。我只挑项目里真正能感知到的变化，再看看它们放到今天是否仍然值得借鉴。
 
-## 为什么后来大家都跟进了
+## Rollup 生态如何被复用
 
 Vite 不只是更快的 dev server，它把工具能力下沉为多种上层框架共享的基础设施。
 
-## Vite 当时想解决的问题
-
-Vite 2 首个稳定版本发布，核心改为框架无关，通过插件支持 Vue、React、Preact 等生态。
-
-## 落到工程里，我关注这几件事
-
-1. esbuild 用于依赖预构建，显著改善冷启动
-2. 兼容 Rollup 插件模型，降低生态建设成本
-3. CSS、Worker、静态资源与 SSR 获得统一开发体验
-
-## 用最小例子感受一下
+## 框架能力为什么放进插件
 
 先用一份小配置验证升级前后的行为：
 
@@ -39,10 +29,22 @@ export default defineConfig({
 })
 ```
 
-## 如果现在接手这样的项目
+
+
+## esbuild 负责了哪一段工作
+
+- esbuild 用于依赖预构建，显著改善冷启动
+- 兼容 Rollup 插件模型，降低生态建设成本
+- CSS、Worker、静态资源与 SSR 获得统一开发体验
+
+## Vite 如何从 Vue 工具变成通用平台
+
+Vite 2 首个稳定版本发布，核心改为框架无关，通过插件支持 Vue、React、Preact 等生态。
+
+## webpack 项目迁移前先找专用 Loader
 
 新项目可优先评估 Vite；旧项目迁移前要盘点 webpack 专用 loader、Node polyfill 和环境变量行为。
 
-## 我参考的资料
+## Vite 2.0 发布说明
 
 - [Vite 官方博客](https://vite.dev/blog/)

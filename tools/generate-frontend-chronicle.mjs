@@ -467,6 +467,122 @@ function references(keys) {
   }).join('\n')
 }
 
+const articleHeadings = {
+  'jquery-and-the-dom-era': ['为什么 2017 年的页面离不开 jQuery', '事件委托到底方便在哪里', '链式调用背后的工程边界', '从操作 DOM 到描述界面', '老项目迁移不必推倒重来', '当年的 jQuery 发布记录'],
+  'es2017-async-await': ['Promise 链写久了，问题出在哪', '把串行等待改成真正并发', 'async/await 没有消灭异步', '错误处理终于回到 try/catch', '今天写异步流程的几个习惯', 'ES2017 规范入口'],
+  'react-16-fiber': ['React 为什么要重写协调器', '用错误边界兜住局部崩溃', 'Fiber 不等于一个新 API', '可中断渲染从这里埋下伏笔', '升级 React 16 时应该检查什么', 'React 16 官方说明'],
+  'webpack-4-zero-config': ['配置文件为什么越写越长', '从 mode 开始精简配置', 'Tree Shaking 与默认优化', '构建工具开始提供合理默认值', '老项目升级 webpack 4 的顺序', 'webpack 的版本记录'],
+  'babel-7-modern-transpilation': ['Babel 到底在转换什么', '按目标浏览器决定转译范围', '语法转换和 Polyfill 是两件事', 'TypeScript 进入 Babel 工具链', '避免把所有代码都编译成 ES5', 'Babel 7 发布说明'],
+  'react-hooks': ['类组件的逻辑为什么难复用', '把订阅封装成一个 Hook', '依赖数组不是性能开关', '函数组件开始承载完整状态', '少写 Effect 比多写技巧更重要', 'Hooks 的首个稳定版本'],
+  'svelte-3-compiler-reactivity': ['不使用虚拟 DOM 会怎样', '响应式赋值写起来是什么感觉', '编译器替运行时做了哪些工作', 'Svelte 带来的另一条框架路线', '别只拿包体积决定技术选型', 'Svelte 3 的设计说明'],
+  'typescript-3-7': ['层层判空曾经有多麻烦', '可选链与空值合并的正确用法', '0 和空字符串不应该被误判', '类型收窄开始贴近真实代码', '别用可选链掩盖错误数据', 'TypeScript 3.7 发布说明'],
+  'deno-1-secure-runtime': ['为什么还要再做一个 JS 运行时', '权限必须写进启动命令', '内置工具减少了多少选择', 'Deno 对 Node 生态提出的问题', '什么项目适合先试 Deno', 'Deno 1.0 发布记录'],
+  'vite-native-esm-origin': ['打包器为什么拖慢开发启动', '浏览器原生 ESM 能做什么', '依赖预构建和源码转换要分开', 'Vite 最初解决的就是等待', '快并不代表可以忽略模块治理', 'Vite 的早期思路'],
+  'vue-3-composition-api': ['Vue 2 大组件为什么越来越难拆', '把同一业务逻辑放回一起', 'Proxy 补上了哪些响应式缺口', 'Composition API 不是换一种写法', '迁移前先盘点组件库和插件', 'Vue 3.0 发布公告'],
+  'webpack-5': ['webpack 5 为什么等了这么久', '远程模块如何暴露给其他应用', '持久化缓存与稳定 Hash', '微前端开始面对分布式问题', 'Module Federation 不适合所有团队', 'webpack 5 发布记录'],
+  'react-server-components-research': ['组件为什么要回到服务器', '服务器组件可以直接读取什么', '客户端边界决定发送多少 JS', '数据获取重新进入组件模型', '不要自己拼装 RSC 基础设施', '最初的 Server Components 介绍'],
+  'vite-2': ['Vite 如何从 Vue 工具变成通用平台', '框架能力为什么放进插件', 'esbuild 负责了哪一段工作', 'Rollup 生态如何被复用', 'webpack 项目迁移前先找专用 Loader', 'Vite 2.0 发布说明'],
+  'node-16-esm': ['前端工具为什么关心 Node 版本', '先把 ESM 包边界声明清楚', 'type 与 exports 如何一起工作', '双模块生态带来的兼容成本', '在 CI 固定运行时版本', 'Node.js 历史版本'],
+  'nextjs-12-swc': ['Next.js 为什么换掉一部分 Babel', 'Middleware 应该保持多轻', 'SWC 带来的不只是速度', '框架开始接管更多工具链', '自定义 Babel 插件怎么迁移', 'Next.js 12 发布记录'],
+  'vue-3-default': ['Vue 3 何时真正成为主线', 'script setup 的日常写法', 'Pinia、Vite 与 Volar 拼齐生态', '框架升级取决于周边是否就绪', 'Vue 2 项目先列阻塞清单', 'Vue 3 默认版本说明'],
+  'react-18-concurrent-rendering': ['并发渲染到底并发在哪里', '用 transition 区分更新优先级', '自动批处理改变了哪些时序', 'StrictMode 为什么更容易暴露问题', '先修不纯渲染再谈性能', 'React 18 发布说明'],
+  'node-18-fetch': ['服务端为什么也需要标准 Fetch', '给请求补上超时与状态检查', 'Web API 统一后仍有服务端问题', '连接池、代理和重试没有消失', '封装 Fetch 时应该统一什么', 'Node.js 18 版本记录'],
+  'nextjs-13-app-router': ['App Router 改变了什么边界', '页面默认留在服务器', 'loading 与 error 进入路由约定', '缓存开始影响业务正确性', '从叶子组件开始添加 use client', 'Next.js 13 发布记录'],
+  'vite-4-ecosystem': ['Vite 为什么不再只是一台开发服务器', '让测试与构建共享模块解析', 'Vitest、VitePress 与元框架汇合', 'Node 生命周期开始影响主版本', '插件兼容比配置技巧更重要', 'Vite 4 的发布记录'],
+  'nextjs-app-router-stable': ['App Router 稳定意味着什么', '写入之后如何让缓存失效', '三类缓存不要混在一起', 'Server Action 也是公开入口', '逐路由迁移比整体重写可靠', 'Next.js 13.4 发布记录'],
+  'bun-1-runtime-toolkit': ['一个工具包办所有事情可行吗', '直接用 Bun 跑一条测试', '安装、测试与构建合并后的体验', '快之外还要验证兼容性', '先从非核心脚本开始试用', 'Bun 1.0 发布说明'],
+  'vite-5-rollup-4': ['Vite 5 为什么提高 Node 基线', '把配置文件迁移到 ESM', 'Rollup 4 带来的构建变化', '旧插件会在哪些地方出问题', '升级顺序应该从运行时开始', 'Vite 5 发布说明'],
+  'vue-3-5-reactivity': ['响应式核心还能怎样优化', 'Props 解构为什么仍能响应', '内存与依赖图的改进', 'SSR 水合开始变得更细', '升级后重点回归 watch 与 computed', 'Vue 3.5 发布公告'],
+  'nextjs-15-caching': ['缓存默认值为什么再次调整', '把动态策略写在路由旁边', '异步 Request API 在准备什么', '数据新鲜度比类型通过更重要', '升级后重点测试哪些页面', 'Next.js 15 发布说明'],
+  'vite-6-environment-api': ['一个模块可能运行在哪些环境', '在配置里区分 Client 与 SSR', '插件不能再假设只有浏览器', 'Environment API 服务的是谁', '普通 SPA 不必追实验接口', 'Vite 6 发布说明'],
+  'react-19-actions': ['React 为什么开始关心表单提交', 'Action 如何管理 pending 状态', 'use 读取 Promise 意味着什么', '乐观更新进入内置模型', '服务器 Action 仍然需要鉴权', 'React 19 发布说明'],
+  'tailwind-4-and-cra-sunset': ['两个旧默认为什么同时变化', '把 Tailwind 主题写回 CSS', 'CRA 退场后脚手架怎么选', '现代 CSS 承担了更多职责', '老 CRA 项目不必连夜重写', 'Tailwind 与 React 官方记录'],
+  'vite-7-baseline': ['浏览器兼容为什么改看 Baseline', '显式写出项目的构建目标', 'Node 20 成为新的工具基线', '旧 WebView 仍要看真实数据', '升级前先统一开发机与 CI', 'Vite 7 发布记录'],
+  'react-compiler-next-16': ['手写 memo 会慢慢消失吗', '在 Next.js 中开启编译器', '自动优化依赖哪些代码规则', 'Turbopack 成为默认意味着什么', '先修不纯组件再打开编译器', 'React Compiler 与 Next.js 16'],
+  'vite-8-beta-rolldown': ['为什么 Vite 想统一两套内核', '用影子构建验证 Beta', 'Rolldown 要兼容哪些插件能力', '开发与生产差异能否变小', 'Beta 不应该直接替换生产链路', 'Vite 8 Beta 记录'],
+  'react-foundation': ['React 为什么需要独立基金会', '先盘点项目里的 React 版本', '治理变化不会直接改一行 API', '单一组织风险如何被降低', '技术选型仍要看发布质量', 'React Foundation 公告'],
+  'vite-8-rolldown': ['Vite 8 最重要的变化是什么', '留下升级前后的构建日志', 'Rolldown 如何统一构建路径', '大项目为什么收益更明显', '复杂插件项目要分阶段验证', 'Vite 8 正式版说明'],
+  'typescript-6-node-26-vite-8-1': ['2026 年工具链在删除哪些历史包袱', '用现代 tsconfig 接住升级', 'Temporal 与原生工具开始落地', '统一内核成为新的关键词', '先做兼容矩阵再追求速度', '2026 年官方发布记录'],
+  'event-loop-async-order': ['先确认你看到的是哪一种乱序', '四行代码看清微任务与定时器', '定时器为什么从来不保证准点', '沿着调用栈和任务队列排查', '别用更多 setTimeout 掩盖竞态', '事件循环参考资料'],
+  'css-z-index-stacking-context': ['z-index 写到 99999 为什么仍没用', '用一个父级 transform 复现问题', '哪些属性会创建层叠上下文', '从被遮挡元素一路向上检查', '弹层应该放进统一 Overlay 容器', '层叠上下文参考资料'],
+  'react-hooks-stale-closure': ['为什么定时器总读到旧状态', '函数式更新避开过期闭包', '依赖数组加完为什么死循环', '检查 Effect 是否真的有必要', '订阅、请求与定时器都要清理', 'Hooks 相关资料'],
+  'vue-reactivity-lost': ['数据明明改了，模板为什么不动', '解构时保留 ref', '替换 reactive 引用会发生什么', '用 Devtools 找到失去代理的位置', '派生值优先交给 computed', 'Vue 响应式资料'],
+  'chunk-load-error-after-deploy': ['为什么发布后只有老用户白屏', '给动态导入留一条恢复路径', '旧 HTML 指向了已经删除的 Chunk', '检查 CDN、源站与版本号', '静态资源至少保留一个回滚窗口', 'webpack 与缓存资料'],
+  'cors-cookie-samesite': ['Set-Cookie 返回了为什么没有保存', '前后端两侧都要允许凭据', '先区分保存失败还是发送失败', '逐项检查 SameSite、Secure 与 Domain', '用真实域名覆盖三套环境', 'CORS 参考资料'],
+  'esm-cjs-module-errors': ['ERR_REQUIRE_ESM 到底是谁抛的', '把动态 import 收敛到模块边界', 'type、exports 与扩展名如何配合', '一定要检查编译后的文件', '发布包同时测试运行时与类型声明', 'Node.js ESM 资料'],
+  'ssr-hydration-mismatch': ['服务端和客户端究竟哪里不同', '把浏览器信息放到水合之后', '时间、随机数和时区都是高风险项', '保存原始 HTML 再对比 DOM', 'SSR 组件需要确定性测试', 'React 水合资料'],
+  'typescript-never-inference': ['变量为什么突然变成 never', '给空数组补上元素类型', '控制流认为哪个分支不可达', '拆开表达式观察每一步推导', '别用 any 把上游模型问题盖住', 'TypeScript 参考资料'],
+  'frontend-memory-leak': ['页面越用越卡时先看什么', '给监听器与请求补上清理函数', '谁还在持有已经卸载的组件', '用 Heap Snapshot 沿 Retainer 追踪', '把循环挂载加入压力测试', 'Chrome 内存排查资料']
+}
+
+function headingsFor(post) {
+  return articleHeadings[post.slug] || [
+    post.topic + ' 当时解决的问题',
+    post.topic + ' 的最小示例',
+    '实现细节与边界',
+    '这次变化带来的影响',
+    '项目中的落地方式',
+    '相关资料'
+  ]
+}
+
+const extraSections = {
+  'jquery-and-the-dom-era': [
+    ['一个更现实的迁移切口', '假设后台里有一张依赖 jQuery 插件的复杂表格，最稳妥的做法通常不是先换框架，而是先把请求、数据转换和 DOM 更新分开。接口层先改成普通函数，事件入口集中到一个模块，最后再替换视图。这样每一步都能单独回归，出了问题也知道该退回哪一层。'],
+    ['插件最难替换的不是语法', '日期选择器、树形控件和上传组件往往把状态挂在 DOM、全局变量或 data 属性上。真正的迁移工作是找清楚初始化、更新和销毁三个生命周期。如果只把选择器改成 querySelector，隐藏的状态和监听器仍会留在页面里。']
+  ],
+  'react-hooks': [
+    ['Effect 最容易被误用的地方', '很多组件把“根据 props 计算一个值”也写进 Effect，再调用 setState 保存结果。这样会多一次渲染，还会制造依赖数组问题。只要结果能由当前 props 和 state 算出，就应该直接在渲染阶段计算；Effect 更适合连接网络、订阅、DOM 或第三方实例。'],
+    ['自定义 Hook 的边界怎么划', '一个 Hook 最好表达完整能力，例如 useOnlineStatus、useDocumentTitle，而不是机械地按生命周期拆成 useMount、useUpdate。调用者应该关心它提供什么结果，不需要知道内部用了几个 Effect。']
+  ],
+  'vue-3-composition-api': [
+    ['ref 和 reactive 不必二选一', '单个值、可能整体替换的对象，使用 ref 往往更直观；一组始终一起修改的字段可以放进 reactive。真正需要避免的是为了少写 value 而随意混用，最后在解构、传参和 watch 时失去响应关系。团队形成固定约定，比争论哪一个更高级有用。'],
+    ['Composable 也会变成新的大组件', '把 Options API 搬进一个超大的 usePage 并没有改善结构。可复用逻辑应围绕业务动作拆分，并清楚暴露只读状态和修改入口。网络请求还要处理取消、竞态和组件卸载，不能只返回 data 与 loading。']
+  ],
+  'webpack-5': [
+    ['远程模块失败时页面怎么办', 'Module Federation 把编译期依赖变成运行时网络依赖。远程入口超时、版本尚未同步或 CDN 缓存异常时，宿主应用必须有降级界面。共享 React 等单例依赖还要防止版本不兼容，否则问题会从构建失败变成线上运行时错误。'],
+    ['缓存优化要看发布结果', '确定性 ID 和 contenthash 只有在非相关模块改动后保持稳定，才真正减少用户下载。升级后可以连续构建两次，只修改一个业务模块，再比较 dist 中其他文件的 hash；这比只看配置项是否开启更可靠。']
+  ],
+  'react-18-concurrent-rendering': [
+    ['StrictMode 的重复执行不是线上重复渲染', '开发环境额外执行 setup 与 cleanup，是为了暴露没有清理的订阅和不纯逻辑。看到两次请求时，应该先让请求可取消或移动到数据层，而不是直接关闭 StrictMode。被重复执行就出错的 Effect，通常本来就缺少幂等性。'],
+    ['Transition 不是通用防抖', 'startTransition 只是在 React 调度里降低更新优先级，并不会减少请求次数。搜索输入仍然需要取消过期请求，昂贵计算仍可能需要 Worker。它解决的是渲染响应性，不是所有异步性能问题。']
+  ],
+  'nextjs-13-app-router': [
+    ['use client 应该放得多低', '一旦文件声明 use client，它导入的客户端依赖会一起进入浏览器边界。实际项目里可以让页面、布局和数据读取保持服务器组件，只把按钮、弹窗、表单等交互叶子标成客户端。这样既保留组合能力，也不会把整个页面重新变成 SPA。'],
+    ['缓存错误往往不像报错', '缓存配置不正确时页面仍能正常渲染，只是用户看到旧数据，所以它比编译错误更危险。列表新增、登录状态和后台修改需要端到端测试，验证写入后哪个路径或标签被失效，而不是仅确认 Server Action 返回成功。']
+  ],
+  'react-19-actions': [
+    ['乐观更新失败后必须能回滚', 'useOptimistic 让界面先显示预期结果，但服务端仍可能因为权限、库存或校验失败而拒绝操作。乐观状态需要和真实响应关联，失败时恢复原值并告诉用户发生了什么。只追求“立即变化”而没有失败路径，会让界面与数据永久不一致。'],
+    ['服务器函数不是私有函数', '带有服务器指令的 Action 最终可以被客户端触发，应当像 API 路由一样做身份校验、参数解析、速率限制和审计。不要因为函数和组件写在同一个仓库里，就信任来自表单的 ID、价格或角色字段。']
+  ],
+  'vite-8-rolldown': [
+    ['先比较产物，再比较秒数', '构建时间下降很吸引人，但升级首先要保证动态导入、CSS 顺序、资源路径和库模式输出没有变化。可以把旧版与新版产物分别保存，在同一套端到端测试中运行，再记录冷启动和构建耗时。性能数字应该排在正确性之后。'],
+    ['插件兼容要覆盖真实钩子', '只启动开发服务器不能证明插件兼容。使用 transform、generateBundle、虚拟模块或 SSR 钩子的插件，应同时跑开发、生产构建和服务端渲染。内部 API 用得越多，越适合拆成单独升级批次。']
+  ],
+  'chunk-load-error-after-deploy': [
+    ['为什么刷新以后往往就好了', '用户打开页面时已经下载了旧版入口，发布后服务器只保留新版 Chunk。正在运行的旧页面继续请求旧 hash，自然得到 404；刷新会拿到新版 HTML，所以看起来像“偶发问题”。这不是用户缓存太顽固，而是发布过程没有兼容仍在线的旧客户端。'],
+    ['一次更安全的发布顺序', '先上传带内容 hash 的静态资源，确认 CDN 可访问后再切换 HTML；旧资源至少保留一个回滚窗口。监控中记录应用版本和失败 URL，才能判断是单个 CDN 节点、某次发布还是 Service Worker 引起。']
+  ],
+  'cors-cookie-samesite': [
+    ['Cookie 有保存和发送两道门', 'Network 面板看到 Set-Cookie 只说明响应尝试写入。浏览器还会检查 Domain、Path、Secure 和 SameSite；保存成功以后，下次请求又会根据站点关系和 credentials 决定是否发送。排查时把这两个阶段分开，速度会快很多。'],
+    ['本地代理为什么会掩盖问题', '开发服务器代理让浏览器看到的是同源请求，因此生产环境的跨站限制没有被触发。测试环境最好使用接近线上的 HTTPS 域名和子域结构，并同时检查预检响应与实际响应。']
+  ],
+  'ssr-hydration-mismatch': [
+    ['页面其实经历了三份状态', '排查水合问题时要区分服务器返回的 HTML、浏览器解析后的 DOM，以及 React 水合后的树。无效标签嵌套会在第二步被浏览器自动修正，即使服务端字符串看起来一致，真正参与水合的结构也可能已经不同。'],
+    ['不要把警告简单压掉', 'suppressHydrationWarning 只适合已知且局部的差异，例如不可避免的时间文本。它不会修复事件错位，也不应包住整块页面。更可靠的方案是给首屏提供确定数据，再在 Effect 中更新浏览器专属信息。']
+  ],
+  'frontend-memory-leak': [
+    ['一次快照不够判断泄漏', '内存升高可能只是垃圾回收尚未发生。更有效的方法是执行固定操作：进入页面、退出页面、手动触发 GC，再重复多轮并比较快照。只有同类对象数量持续增长，而且能沿 Retainer 找到稳定引用链，才更接近真正泄漏。'],
+    ['缓存也需要生命周期', 'Map、查询缓存和图片预览常被当成性能优化，却可能无限持有数据。缓存应有容量、过期时间或按路由释放策略。对大对象来说，少一次请求带来的收益可能抵不过长时间占用内存的成本。']
+  ]
+}
+
+function renderExtraSections(post) {
+  return (extraSections[post.slug] || [])
+    .map(([title, body]) => markdownSection(title, body))
+    .join('\n\n')
+}
+
 function codeExample(post) {
   const bySlug = {
     'jquery-and-the-dom-era': ['js', '老项目里很常见的事件委托：', ["$('.js-menu').on('click', '.js-item', function () {", "  $(this).toggleClass('is-active')", '})']],
@@ -507,8 +623,7 @@ function codeExample(post) {
 
 function renderExample(post) {
   const [language, caption, lines] = codeExample(post)
-  const headings = ['先看一段代码', '用最小例子感受一下', '代码里最直观的变化', '先动手跑一下', '把问题缩小到这几行']
-  const heading = headings[hashCode(post.slug) % headings.length]
+  const heading = headingsFor(post)[1]
   const fence = String.fromCharCode(96).repeat(3)
   return ['## ' + heading, '', caption, '', fence + language, ...lines, fence].join('\n')
 }
@@ -649,7 +764,7 @@ function pick(post, salt, values) {
 
 function renderHistoryBody(post) {
   const year = post.date.slice(0, 4)
-  const variant = hashCode(post.slug) % 5
+  const variant = hashCode(post.slug) % 6
   const intros = [
     '如果把时间拨回 ' + year + ' 年，' + post.topic + ' 所面对的问题和今天并不完全一样。回头看这次变化，最有意思的不是版本号，而是开发方式从这里拐了一个弯。',
     '整理这段历史时，我更想回答一个实际问题：这次升级到底替开发者省掉了什么，又带来了哪些新的约束？',
@@ -657,17 +772,16 @@ function renderHistoryBody(post) {
     '这不是一篇发布日志翻译。我只挑项目里真正能感知到的变化，再看看它们放到今天是否仍然值得借鉴。',
     '前端工具更新很快，但并不是每个版本都值得记住。' + year + ' 年这次变化之所以留下来，是因为它改变了后续项目的默认做法。'
   ]
-  const contextHeading = pick(post, 'context', ['先把时间拨回 ' + year + ' 年', year + ' 年，项目里正在发生什么', post.topic + ' 当时想解决的问题', '从当时的开发现场说起'])
-  const detailHeading = pick(post, 'detail', ['三个值得记住的细节', '版本号之外的变化', '落到工程里，我关注这几件事', '这部分最容易被忽略'])
-  const impactHeading = pick(post, 'impact', ['这次升级真正解决了什么', '真正改变开发体验的地方', '收益背后的代价', '为什么后来大家都跟进了'])
-  const practiceHeading = pick(post, 'practice', ['如果现在接手这样的项目', '今天再做一次选择', '我会怎么落地', '别急着把老项目全部重写'])
-  const sourcesBlock = markdownSection(pick(post, 'source', ['我参考的资料', '版本记录与延伸阅读', '继续往下看', '相关发布记录']), references(post.refs))
+  const [contextHeading, , detailHeading, impactHeading, practiceHeading, sourceHeading] = headingsFor(post)
+  const sourcesBlock = markdownSection(sourceHeading, references(post.refs))
+  const extra = renderExtraSections(post)
 
   if (variant === 0) {
     return [
       intros[variant],
       markdownSection(contextHeading, post.event),
       renderExample(post),
+      extra,
       markdownSection(impactHeading, post.impact + '\n\n' + bulletList(post.changes)),
       markdownSection(practiceHeading, post.today),
       sourcesBlock
@@ -681,6 +795,7 @@ function renderHistoryBody(post) {
       markdownSection(contextHeading, post.event),
       markdownSection(detailHeading, numberedList(post.changes)),
       renderExample(post),
+      extra,
       markdownSection(practiceHeading, post.today),
       sourcesBlock
     ].join('\n\n')
@@ -691,6 +806,7 @@ function renderHistoryBody(post) {
       intros[variant],
       markdownSection(contextHeading, post.event + '\n\n' + post.impact),
       renderExample(post),
+      extra,
       markdownSection(detailHeading, bulletList(post.changes)),
       markdownSection(practiceHeading, post.today),
       sourcesBlock
@@ -702,6 +818,7 @@ function renderHistoryBody(post) {
       intros[variant],
       markdownSection(impactHeading, post.impact),
       renderExample(post),
+      extra,
       markdownSection(detailHeading, bulletList(post.changes)),
       markdownSection(contextHeading, post.event),
       markdownSection(practiceHeading, post.today),
@@ -709,35 +826,52 @@ function renderHistoryBody(post) {
     ].join('\n\n')
   }
 
+  if (variant === 4) {
+    return [
+      intros[variant],
+      post.event,
+      renderExample(post),
+      extra,
+      markdownSection(detailHeading, post.changes.join('；') + '。'),
+      markdownSection(impactHeading, post.impact),
+      markdownSection(practiceHeading, post.today),
+      sourcesBlock
+    ].join('\n\n')
+  }
+
   return [
     intros[variant],
-    post.event,
+    post.event + '\n\n' + post.impact,
     renderExample(post),
-    markdownSection(detailHeading, post.changes.join('；') + '。'),
-    markdownSection(impactHeading, post.impact),
+    extra,
+    markdownSection(detailHeading, bulletList(post.changes)),
     markdownSection(practiceHeading, post.today),
     sourcesBlock
   ].join('\n\n')
 }
 
 function renderDebugBody(post) {
-  const variant = hashCode(post.slug) % 4
+  const variant = hashCode(post.slug) % 5
+  const [symptomHeading, , causeHeading, diagnoseHeading, fixHeading, sourceHeading] = headingsFor(post)
+  const extra = renderExtraSections(post)
   const intros = [
     '这个问题最麻烦的地方，是表面现象和真正根因经常不在同一层。下面按一次实际排查的顺序来走。',
     '遇到这类报错时，先别急着改配置。稳定复现、缩小范围，通常比在搜索结果里反复复制答案更快。',
     '我把这类问题拆成了“看到什么、怎么定位、最后改哪里”三部分。下次再遇到，可以直接照着检查。',
-    '这类 Bug 很少靠一行代码彻底解决。修复现场问题之外，还要把缓存、生命周期或发布流程一起补上。'
+    '这类 Bug 很少靠一行代码彻底解决。修复现场问题之外，还要把缓存、生命周期或发布流程一起补上。',
+    '先说结论：不要从报错文字直接猜答案。把现场压缩成最小例子，再顺着引用、网络或渲染链路往回找，通常更稳。'
   ]
-  const source = markdownSection('相关资料', references(post.refs))
+  const source = markdownSection(sourceHeading, references(post.refs))
 
   if (variant === 0) {
     return [
       intros[variant],
-      markdownSection('现场通常是什么样', bulletList(post.symptoms)),
+      markdownSection(symptomHeading, bulletList(post.symptoms)),
       renderExample(post),
-      markdownSection('我会先查这几个位置', numberedList(post.steps)),
-      markdownSection('最后发现的高频根因', bulletList(post.causes)),
-      markdownSection('修复和收尾', numberedList(post.fixes) + '\n\n' + post.prevent),
+      extra,
+      markdownSection(diagnoseHeading, numberedList(post.steps)),
+      markdownSection(causeHeading, bulletList(post.causes)),
+      markdownSection(fixHeading, numberedList(post.fixes) + '\n\n' + post.prevent),
       source
     ].join('\n\n')
   }
@@ -745,11 +879,12 @@ function renderDebugBody(post) {
   if (variant === 1) {
     return [
       intros[variant],
-      markdownSection('先确认是不是同一个问题', bulletList(post.symptoms)),
-      markdownSection('不要跳过最小复现', numberedList(post.steps)),
+      markdownSection(symptomHeading, bulletList(post.symptoms)),
+      markdownSection(diagnoseHeading, numberedList(post.steps)),
       renderExample(post),
-      markdownSection('根因通常藏在这里', bulletList(post.causes)),
-      markdownSection('我最后会这样改', numberedList(post.fixes)),
+      extra,
+      markdownSection(causeHeading, bulletList(post.causes)),
+      markdownSection(fixHeading, numberedList(post.fixes)),
       post.prevent,
       source
     ].join('\n\n')
@@ -758,22 +893,34 @@ function renderDebugBody(post) {
   if (variant === 2) {
     return [
       intros[variant],
-      markdownSection('从现象开始缩小范围', numberedList(post.symptoms)),
-      markdownSection('排查过程', numberedList(post.steps)),
-      markdownSection('为什么会发生', post.causes.join('；') + '。'),
+      markdownSection(symptomHeading, numberedList(post.symptoms)),
+      markdownSection(diagnoseHeading, numberedList(post.steps)),
+      markdownSection(causeHeading, post.causes.join('；') + '。'),
       renderExample(post),
-      markdownSection('修完以后别漏掉这些事', bulletList(post.fixes) + '\n\n' + post.prevent),
+      extra,
+      markdownSection(fixHeading, bulletList(post.fixes) + '\n\n' + post.prevent),
       source
     ].join('\n\n')
   }
 
+  if (variant === 3) return [
+    intros[variant],
+    markdownSection(fixHeading, post.prevent),
+    markdownSection(symptomHeading, bulletList(post.symptoms)),
+    renderExample(post),
+    extra,
+    markdownSection(diagnoseHeading, numberedList(post.steps)),
+    markdownSection(causeHeading, bulletList(post.causes) + '\n\n' + numberedList(post.fixes)),
+    source
+  ].join('\n\n')
+
   return [
     intros[variant],
-    markdownSection('先给结论', post.prevent),
-    markdownSection('出现过这些信号，就值得检查', bulletList(post.symptoms)),
+    post.symptoms.join('；') + '。',
     renderExample(post),
-    markdownSection('沿着这条线查', numberedList(post.steps)),
-    markdownSection('根因与对应修复', bulletList(post.causes) + '\n\n' + numberedList(post.fixes)),
+    extra,
+    markdownSection(diagnoseHeading, numberedList(post.steps) + '\n\n' + bulletList(post.causes)),
+    markdownSection(fixHeading, numberedList(post.fixes) + '\n\n' + post.prevent),
     source
   ].join('\n\n')
 }

@@ -13,13 +13,13 @@ toc: true
 ---
 这个问题最麻烦的地方，是表面现象和真正根因经常不在同一层。下面按一次实际排查的顺序来走。
 
-## 现场通常是什么样
+## 数据明明改了，模板为什么不动
 
 - 修改数据后模板不更新
 - 从 reactive 对象解构后变量失去响应
 - watch 没有触发或触发次数远多于预期
 
-## 先看一段代码
+## 解构时保留 ref
 
 解构 reactive 对象时保留 ref：
 
@@ -28,19 +28,21 @@ const state = reactive({ keyword: '', page: 1 })
 const { keyword, page } = toRefs(state)
 ```
 
-## 我会先查这几个位置
+
+
+## 用 Devtools 找到失去代理的位置
 
 1. 用 Vue Devtools 确认实际变化的是 ref、代理还是普通值
 2. 把问题压缩到一个 computed 和一个 watch 验证依赖
 3. 检查异步回调是否修改了已经失效的组件状态
 
-## 最后发现的高频根因
+## 替换 reactive 引用会发生什么
 
 - 普通解构复制了当前值，不再经过响应式代理
 - 替换整个 reactive 引用会让消费者仍指向旧代理
 - 深度 watch 遍历范围过大，且新旧值可能指向同一对象
 
-## 修复和收尾
+## 派生值优先交给 computed
 
 1. 解构 reactive 时使用 toRefs，单值状态优先 ref
 2. 用 computed 表达派生值，不要用 watch 复制状态
@@ -48,6 +50,6 @@ const { keyword, page } = toRefs(state)
 
 团队统一 ref/reactive 选型约定，并避免在多个 store 中保存同一业务状态副本。
 
-## 相关资料
+## Vue 响应式资料
 
 - [Vue 3.0 发布公告](https://blog.vuejs.org/posts/vue-3-one-piece)

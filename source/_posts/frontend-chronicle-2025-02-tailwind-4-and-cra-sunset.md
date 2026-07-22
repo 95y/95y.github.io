@@ -12,13 +12,13 @@ cover: /img/covers/frontend-chronicle-tailwind-4-and-cra-sunset.svg
 top_img: /img/covers/frontend-chronicle-tailwind-4-and-cra-sunset.svg
 toc: true
 ---
-如果把时间拨回 2025 年，前端工具链 所面对的问题和今天并不完全一样。回头看这次变化，最有意思的不是版本号，而是开发方式从这里拐了一个弯。
+这不是一篇发布日志翻译。我只挑项目里真正能感知到的变化，再看看它们放到今天是否仍然值得借鉴。
 
-## 前端工具链 当时想解决的问题
+## 现代 CSS 承担了更多职责
 
-Tailwind CSS 4 使用新的高性能引擎与 CSS-first 配置；React 团队随后停止推荐 Create React App，建议新项目采用框架或 Vite 等构建工具。
+“官方脚手架”不再是永远正确的默认值。前端项目需要主动选择渲染方式、路由、数据层和部署模型。
 
-## 先看一段代码
+## 把 Tailwind 主题写回 CSS
 
 Tailwind CSS 4 把主题配置带回 CSS：
 
@@ -29,19 +29,23 @@ Tailwind CSS 4 把主题配置带回 CSS：
 }
 ```
 
-## 为什么后来大家都跟进了
 
-“官方脚手架”不再是永远正确的默认值。前端项目需要主动选择渲染方式、路由、数据层和部署模型。
+
+## CRA 退场后脚手架怎么选
 
 - 现代 CSS 能力承担更多主题与配置职责
 - CRA 的封闭零配置模型不再适应当前框架和构建需求
 - 新项目脚手架从单一模板转向按产品架构选择
 
-## 如果现在接手这样的项目
+## 两个旧默认为什么同时变化
+
+Tailwind CSS 4 使用新的高性能引擎与 CSS-first 配置；React 团队随后停止推荐 Create React App，建议新项目采用框架或 Vite 等构建工具。
+
+## 老 CRA 项目不必连夜重写
 
 已有 CRA 项目可以继续维护，但应规划迁移并先移除 react-scripts 隐式依赖；样式工具升级要做视觉回归。
 
-## 我参考的资料
+## Tailwind 与 React 官方记录
 
 - [Tailwind CSS v4.0](https://tailwindcss.com/blog/tailwindcss-v4)
 - [Create React App 停止推荐](https://react.dev/blog/2025/02/14/sunsetting-create-react-app)
