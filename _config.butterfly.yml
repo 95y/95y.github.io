@@ -1,8 +1,9 @@
 # 导航栏
 nav:
-  logo:
+  logo: /img/avatar.svg
   display_title: true
-  fixed: false
+  display_post_title: true
+  fixed: true
 
 menu:
   首页: / || fas fa-home
@@ -14,8 +15,8 @@ menu:
 # 站点图标与头像
 favicon: /img/favicon.png
 avatar:
-  img: /img/favicon.png
-  effect: true
+  img: /img/avatar.svg
+  effect: false
 
 # 首页标题与背景
 subtitle:
@@ -24,14 +25,28 @@ subtitle:
   typed_option:
   source: false
   sub:
-    - 记录技术，也记录成长
-    - 保持好奇，持续折腾
+    - 把复杂问题讲清楚，把实践经验沉淀下来
+    - 关注前端、工程化、性能与开发效率
+    - 保持好奇，持续构建
 
-index_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg
-default_top_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.jpg
-archive_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/archive.jpg
-tag_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/tag.jpg
-category_img: https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/category.jpg
+index_site_info_top: 44%
+index_top_img_height: 72vh
+index_img: /img/site-cover.svg
+default_top_img: /img/site-cover.svg
+archive_img: /img/site-cover.svg
+tag_img: /img/site-cover.svg
+category_img: /img/site-cover.svg
+footer_img: false
+background:
+
+error_img:
+  flink: /img/friend_404.gif
+  post_page: /img/404.jpg
+
+error_404:
+  enable: true
+  subtitle: 页面走丢了，返回首页继续阅读吧
+  background: /img/site-cover.svg
 
 # 文章封面
 cover:
@@ -39,7 +54,12 @@ cover:
   aside_enable: true
   archives_enable: true
   default_cover:
-    - https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.jpg
+    - /img/frontend-performance-cover.svg
+
+index_layout: 3
+index_post_content:
+  method: 2
+  length: 180
 
 # 代码块
 code_blocks:
@@ -55,6 +75,25 @@ code_blocks:
 # 社交链接
 social:
   fab fa-github: https://github.com/95y || GitHub
+  fas fa-rss: /atom.xml || RSS
+
+theme_color:
+  enable: true
+  main: "#2563EB"
+  paginator: "#7C3AED"
+  button_hover: "#7C3AED"
+  text_selection: "#2563EB"
+  link_color: "#2563EB"
+  meta_color: "#64748B"
+  hr_color: "#CBD5E1"
+  code_foreground: "#0F172A"
+  code_background: "rgba(37, 99, 235, 0.08)"
+  toc_color: "#2563EB"
+  blockquote_padding_color: "#2563EB"
+  blockquote_background_color: "rgba(37, 99, 235, 0.08)"
+  scrollbar_color: "#2563EB"
+  meta_theme_color_light: "#F8FAFC"
+  meta_theme_color_dark: "#0B1120"
 
 # 深色模式
 darkmode:
@@ -67,7 +106,7 @@ aside:
   enable: true
   hide: false
   button: true
-  mobile: true
+  mobile: false
   position: right
   display:
     archive: true
@@ -75,7 +114,7 @@ aside:
     category: true
   card_author:
     enable: true
-    description: 记录开发实践、效率工具和生活思考
+    description: 前端开发者，记录工程实践、性能优化与效率工具
     button:
       enable: true
       icon: fab fa-github
@@ -83,7 +122,7 @@ aside:
       link: https://github.com/95y
   card_announcement:
     enable: true
-    content: 欢迎来到小辣条的个人博客
+    content: 写可复用的经验，做有长期价值的技术积累。
   card_recent_post:
     enable: true
     limit: 5
@@ -113,6 +152,7 @@ aside:
     post_count: true
     last_push_date: true
     sort_order:
+    runtime_date: 01/18/2022 00:00:00
 
 # 文章设置
 post_meta:
@@ -145,9 +185,44 @@ post_copyright:
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
+post_edit:
+  enable: true
+  url: https://github.com/95y/95y.github.io/edit/main/source/
+
+related_post:
+  enable: true
+  limit: 4
+  date_type: created
+
+noticeOutdate:
+  enable: true
+  style: flat
+  limit_day: 365
+  position: top
+  message_prev: 距离上次更新已经
+  message_next: 天，文中部分内容可能已经发生变化。
+
 # 页面体验
 readmode: true
 rightside_scroll_percent: true
+anchor:
+  auto_update: true
+  click_to_scroll: true
+
+copy:
+  enable: true
+  copyright:
+    enable: true
+    limit_count: 160
+
+lazyload:
+  enable: true
+  native: true
+  field: site
+  placeholder:
+  blur: false
+
+instantpage: true
 translate:
   enable: true
   default: 简
@@ -165,9 +240,26 @@ footer:
     enable: true
     version: true
 
-# 搜索和评论暂不启用
-local_search:
-  enable: false
+# 本地搜索
+search:
+  use: local_search
+  placeholder: 搜索文章、标签或关键词
+  local_search:
+    preload: true
+    top_n_per_article: 3
+    unescape: true
+    pagination:
+      enable: true
+      hitsPerPage: 8
+    CDN:
+
+busuanzi:
+  site_uv: false
+  site_pv: false
+  page_pv: false
+
+share:
+  use:
 
 comments:
   use:
@@ -175,3 +267,20 @@ comments:
   lazyload: false
   count: false
   card_post_count: false
+
+Open_Graph_meta:
+  enable: true
+  option:
+    twitter_card: summary_large_image
+
+structured_data:
+  enable: true
+  alternate_name:
+    - Chili Hong 的技术博客
+    - 95y Blog
+
+inject:
+  head:
+    - <meta name="color-scheme" content="light dark">
+    - <link rel="stylesheet" href="/css/custom.css">
+  bottom:
