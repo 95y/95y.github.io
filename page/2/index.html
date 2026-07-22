@@ -1,0 +1,330 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>小辣条 - 前端开发 · 工程实践 · 效率工具</title><meta name="author" content="Chili Hong"><meta name="copyright" content="Chili Hong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Chili Hong 的个人技术博客，记录前端开发、工程实践、性能优化与效率工具。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小辣条">
+<meta property="og:url" content="https://95y.github.io/page/2/">
+<meta property="og:site_name" content="小辣条">
+<meta property="og:description" content="Chili Hong 的个人技术博客，记录前端开发、工程实践、性能优化与效率工具。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://95y.github.io/img/favicon.png">
+<meta property="article:author" content="Chili Hong">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Web 性能">
+<meta property="article:tag" content="前端开发">
+<meta property="article:tag" content="工程化">
+<meta property="article:tag" content="技术博客">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://95y.github.io/img/favicon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://95y.github.io/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":3,"unescape":true,"pagination":{"enable":true,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":160,"languages":{"author":"作者: Chili Hong","link":"链接: ","source":"来源: 小辣条","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '小辣条',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="小辣条" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">小辣条</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">小辣条</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/95y" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2024/12/05/frontend-chronicle-2024-12-react-19-actions/" title="2024 前端技术演进：React 19：Actions、use 与表单异步状态"><img class="post-bg" src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024 前端技术演进：React 19：Actions、use 与表单异步状态" loading='lazy'></a></div><div class="recent-post-info"><a class="article-title" href="/2024/12/05/frontend-chronicle-2024-12-react-19-actions/" title="2024 前端技术演进：React 19：Actions、use 与表单异步状态">2024 前端技术演进：React 19：Actions、use 与表单异步状态</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-12-05T01:00:00.000Z" title="发表于 2024-12-05 09:00:00">2024-12-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/">前端年鉴</a></span></div><div class="content"> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。  当时发生了什么React 19 正式发布，围绕异步 Actions、表单状态、资源预加载和服务器组件集成完善 API。 核心变化 useActionState 与 useOptimistic 组织提交和乐观更新 use 可以读取 Promise 或 Context 并与 Suspense 协作 ref 作为 prop 与文档元数据等 DOM 能力得到简化  为什么重要异步数据变更从组件外部库的专属领域，更多进入 React 自身渲染和表单模型。 放到今天怎么实践Actions 不是鉴权机制；服务器入口仍要校验权限和参数。升级先处理弃用项，再评估是否重写已有成熟表单。 建议在真实项目中按以下顺序验证：  盘点当前版本、插件和运行环境，不带假设地记录现状。 建立最小可运行示例，确认新能力的边界和失败方式。 在测试或影子构建中比较行为、性能与最终产物。 保留回滚路径，再逐步扩大使用范围。  参考资料 React v19  </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/11/26/frontend-chronicle-2024-11-vite-6-environment-api/" title="2024 前端技术演进：Vite 6：Environment API 面向多运行时框架"><img class="post-bg" src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024 前端技术演进：Vite 6：Environment API 面向多运行时框架" loading='lazy'></a></div><div class="recent-post-info"><a class="article-title" href="/2024/11/26/frontend-chronicle-2024-11-vite-6-environment-api/" title="2024 前端技术演进：Vite 6：Environment API 面向多运行时框架">2024 前端技术演进：Vite 6：Environment API 面向多运行时框架</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-26T01:00:00.000Z" title="发表于 2024-11-26 09:00:00">2024-11-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/">前端年鉴</a></span></div><div class="content"> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。  当时发生了什么Vite 6 推出实验性 Environment API，让框架可以为客户端、SSR、边缘或其他运行时定义不同模块执行环境。 核心变化 同一开发服务器可以表达多个运行时环境 框架作者能复用更接近生产的开发基础设施 Sass 等生态默认 API 继续现代化  为什么重要Vite 从 SPA 构建工具继续下沉为全栈框架基础设施，环境边界成为插件设计的重要维度。 放到今天怎么实践普通 SPA 不必追逐实验 API；框架和插件作者应避免假设所有模块都运行在 Node 或浏览器。 建议在真实项目中按以下顺序验证：  盘点当前版本、插件和运行环境，不带假设地记录现状。 建立最小可运行示例，确认新能力的边界和失败方式。 在测试或影子构建中比较行为、性能与最终产物。 保留回滚路径，再逐步扩大使用范围。  参考资料 Vite 官方博客  </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/10/21/frontend-chronicle-2024-10-nextjs-15-caching/" title="2024 前端技术演进：Next.js 15：缓存默认值调整与 Turbopack Dev 稳定"><img class="post-bg" src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024 前端技术演进：Next.js 15：缓存默认值调整与 Turbopack Dev 稳定" loading='lazy'></a></div><div class="recent-post-info"><a class="article-title" href="/2024/10/21/frontend-chronicle-2024-10-nextjs-15-caching/" title="2024 前端技术演进：Next.js 15：缓存默认值调整与 Turbopack Dev 稳定">2024 前端技术演进：Next.js 15：缓存默认值调整与 Turbopack Dev 稳定</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-21T01:00:00.000Z" title="发表于 2024-10-21 09:00:00">2024-10-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/">前端年鉴</a></span></div><div class="content"> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。  当时发生了什么Next.js 15 发布，调整 fetch、GET Route Handler 和客户端路由缓存默认行为，并将 Turbopack 开发模式标记稳定。 核心变化 动态数据默认更不容易被意外缓存 异步 Request API 为后续渲染模型做准备 React 19 支持与 Server Actions 安全改进同步进入  为什么重要缓存从隐式性能优化转向显式业务决策。升级如果只处理类型错误而不验证数据新鲜度，容易出现行为回归。 放到今天怎么实践为每条关键数据记录缓存需求，配合 revalidate 与标签失效；升级后重点测试登录态、列表刷新和后台更新。 建议在真实项目中按以下顺序验证：  盘点当前版本、插件和运行环境，不带假设地记录现状。 建立最小可运行示例，确认新能力的边界和失败方式。 在测试或影子构建中比较行为、性能与最终产物。 保留回滚路径，再逐步扩大使用范围。  参考资料 Next.js 官方博客  </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/09/03/frontend-chronicle-2024-09-vue-3-5-reactivity/" title="2024 前端技术演进：Vue 3.5：响应式性能、解构与 SSR 细节继续成熟"><img class="post-bg" src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024 前端技术演进：Vue 3.5：响应式性能、解构与 SSR 细节继续成熟" loading='lazy'></a></div><div class="recent-post-info"><a class="article-title" href="/2024/09/03/frontend-chronicle-2024-09-vue-3-5-reactivity/" title="2024 前端技术演进：Vue 3.5：响应式性能、解构与 SSR 细节继续成熟">2024 前端技术演进：Vue 3.5：响应式性能、解构与 SSR 细节继续成熟</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-03T01:00:00.000Z" title="发表于 2024-09-03 09:00:00">2024-09-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/">前端年鉴</a></span></div><div class="content"> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。  当时发生了什么Vue 3.5 发布，重构响应式系统，并改进 props 解构、SSR 水合和自定义元素能力。 核心变化 响应式核心降低内存占用并改善大型依赖图性能 响应式 props 解构进入稳定使用路径 延迟水合等 API 帮助控制 SSR 交互成本  为什么重要框架竞争从新增 API 转向编译、内存、SSR 与开发工具等系统性细节，升级价值更多体现在长期稳定性。 放到今天怎么实践升级后重点回归 computed、watch 与 SSR 水合；不要依赖未公开的响应式内部结构。 建议在真实项目中按以下顺序验证：  盘点当前版本、插件和运行环境，不带假设地记录现状。 建立最小可运行示例，确认新能力的边界和失败方式。 在测试或影子构建中比较行为、性能与最终产物。 保留回滚路径，再逐步扩大使用范围。  参考资料 Vue 3.5 发布公告  </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/08/16/frontend-debug-ssr-hydration-mismatch/" title="前端疑难排查：Hydration mismatch 排查：服务端 HTML 为什么和客户端不同"><img class="post-bg" src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端疑难排查：Hydration mismatch 排查：服务端 HTML 为什么和客户端不同" loading='lazy'></a></div><div class="recent-post-info"><a class="article-title" href="/2024/08/16/frontend-debug-ssr-hydration-mismatch/" title="前端疑难排查：Hydration mismatch 排查：服务端 HTML 为什么和客户端不同">前端疑难排查：Hydration mismatch 排查：服务端 HTML 为什么和客户端不同</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-08-16T06:00:00.000Z" title="发表于 2024-08-16 14:00:00">2024-08-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E6%8E%92%E9%9A%9C/">前端排障</a></span></div><div class="content">线上问题最怕“改一点试试看”。更可靠的方式是先稳定复现，再沿数据、时序、网络或渲染链路逐层缩小范围。 常见症状 页面首次加载闪烁并出现水合不匹配警告 只有刷新或生产环境出现，客户端跳转正常 事件绑定错位，部分 DOM 被客户端重新创建  高概率根因 渲染阶段读取 Date、Math.random、window 或本地存储 服务端和客户端使用不同语言、时区或数据快照 无效 HTML 嵌套被浏览器解析器自动纠正  定位步骤 保存服务端原始 HTML，并与水合前后的 DOM 对比 固定时间、随机数、语言和请求数据复现 逐层缩小客户端组件边界，定位第一个不同节点  修复方案 首屏使用服务器提供的稳定快照，浏览器专属值放到 Effect 后更新 用合法 HTML 与确定性 key，统一时区和国际化配置 必须跳过水合的第三方组件采用明确的客户端加载边界  如何防止再次发生SSR 组件执行确定性测试，并在 CI 用真实浏览器检查控制台 hydration 警告。 修复完成后还应补充最小回归用例，并把关键上下文写进错误日志。只有能够在下一次自动发现同类问题，排障工作才算真正闭环。 参考资料 Re...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/11/16/frontend-chronicle-2023-11-vite-5-rollup-4/" title="2023 前端技术演进：Vite 5：Rollup 4 与现代 Node 基线"><img class="post-bg" src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2023 前端技术演进：Vite 5：Rollup 4 与现代 Node 基线" loading='lazy'></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/16/frontend-chronicle-2023-11-vite-5-rollup-4/" title="2023 前端技术演进：Vite 5：Rollup 4 与现代 Node 基线">2023 前端技术演进：Vite 5：Rollup 4 与现代 Node 基线</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-16T01:00:00.000Z" title="发表于 2023-11-16 09:00:00">2023-11-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/">前端年鉴</a></span></div><div class="content"> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。  当时发生了什么Vite 5 切换到 Rollup 4，要求 Node.js 18&#x2F;20+，清理废弃 API，并继续改善开发服务器性能分析能力。 核心变化 生产构建获得 Rollup 4 的性能改进 CJS Node API 被弃用，推动配置与插件转向 ESM server.warmup 可提前转换常用模块  为什么重要工具升级越来越与 Node 生命周期、模块系统和插件维护状态绑定，长期不升级的成本会集中爆发。 放到今天怎么实践先升级 Node 和配置文件模块格式，再升级 Vite；用 ecosystem CI 思路验证关键插件而不是只看 dev 能否启动。 建议在真实项目中按以下顺序验证：  盘点当前版本、插件和运行环境，不带假设地记录现状。 建立最小可运行示例，确认新能力的边界和失败方式。 在测试或影子构建中比较行为、性能与最终产物。 保留回滚路径，再逐步扩大使用范围。  参考资料 Vite 官方博客  </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/09/08/frontend-chronicle-2023-09-bun-1-runtime-toolkit/" title="2023 前端技术演进：Bun 1.0：运行时、包管理器与构建工具走向一体化"><img class="post-bg" src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2023 前端技术演进：Bun 1.0：运行时、包管理器与构建工具走向一体化" loading='lazy'></a></div><div class="recent-post-info"><a class="article-title" href="/2023/09/08/frontend-chronicle-2023-09-bun-1-runtime-toolkit/" title="2023 前端技术演进：Bun 1.0：运行时、包管理器与构建工具走向一体化">2023 前端技术演进：Bun 1.0：运行时、包管理器与构建工具走向一体化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-08T01:00:00.000Z" title="发表于 2023-09-08 09:00:00">2023-09-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/">前端年鉴</a></span></div><div class="content"> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。  当时发生了什么Bun 1.0 发布，将 JavaScript 运行时、包管理、测试和打包能力放进一个工具，强调启动与安装性能。 核心变化 单一工具覆盖 install、run、test 与 bundle 对 Node.js API 和 npm 包保持较高兼容目标 原生实现推动传统工具重新关注性能  为什么重要工具链一体化减少组合成本，但兼容性、可观测性和生产验证仍决定能否替代成熟栈。 放到今天怎么实践可以先在 CI、脚本或非核心服务试用；生产迁移要覆盖原生模块、锁文件、网络代理和边缘行为。 建议在真实项目中按以下顺序验证：  盘点当前版本、插件和运行环境，不带假设地记录现状。 建立最小可运行示例，确认新能力的边界和失败方式。 在测试或影子构建中比较行为、性能与最终产物。 保留回滚路径，再逐步扩大使用范围。  参考资料 Bun 1.0  </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/08/18/frontend-debug-esm-cjs-module-errors/" title="前端疑难排查：ESM/CJS 混用排查：ERR_REQUIRE_ESM 与默认导入错误"><img class="post-bg" src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端疑难排查：ESM/CJS 混用排查：ERR_REQUIRE_ESM 与默认导入错误" loading='lazy'></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/18/frontend-debug-esm-cjs-module-errors/" title="前端疑难排查：ESM/CJS 混用排查：ERR_REQUIRE_ESM 与默认导入错误">前端疑难排查：ESM/CJS 混用排查：ERR_REQUIRE_ESM 与默认导入错误</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-18T06:00:00.000Z" title="发表于 2023-08-18 14:00:00">2023-08-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E6%8E%92%E9%9A%9C/">前端排障</a></span></div><div class="content">线上问题最怕“改一点试试看”。更可靠的方式是先稳定复现，再沿数据、时序、网络或渲染链路逐层缩小范围。 常见症状 运行时报 ERR_REQUIRE_ESM 或 require is not defined 开发环境正常，测试或构建阶段导入失败 默认导入得到 undefined 或多包了一层 default  高概率根因 package.json type、文件扩展名与编译输出模块格式不一致 依赖只发布 ESM，而调用方仍使用 require TypeScript、测试器和运行时采用不同 moduleResolution  定位步骤 从报错入口逐层确认每个包的 type、exports 和实际文件扩展名 查看构建后的代码，不只检查 TypeScript 源码 用 node 直接执行最小导入，排除框架包装影响  修复方案 新项目统一使用 ESM，并让 tsconfig 与运行时保持一致 CommonJS 中加载 ESM 使用动态 import，避免私自深层导入 库包通过 exports 明确提供的入口，不依赖隐式目录解析  如何防止再次发生在 CI 同时测试发布产物与类型声明；升级纯 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/05/04/frontend-chronicle-2023-05-nextjs-app-router-stable/" title="2023 前端技术演进：Next.js 13.4：App Router 稳定后的缓存与边界课题"><img class="post-bg" src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2023 前端技术演进：Next.js 13.4：App Router 稳定后的缓存与边界课题" loading='lazy'></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/04/frontend-chronicle-2023-05-nextjs-app-router-stable/" title="2023 前端技术演进：Next.js 13.4：App Router 稳定后的缓存与边界课题">2023 前端技术演进：Next.js 13.4：App Router 稳定后的缓存与边界课题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-04T01:00:00.000Z" title="发表于 2023-05-04 09:00:00">2023-05-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/">前端年鉴</a></span></div><div class="content"> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。  当时发生了什么Next.js 13.4 将 App Router 标记为稳定，Server Components、嵌套路由和 Server Actions alpha 进入更广泛生产实践。 核心变化 服务器组件成为 App Router 默认组件类型 路由段支持独立加载、错误与重新验证策略 数据缓存和路由缓存成为性能模型的一部分  为什么重要框架替开发者做了更多优化，也意味着团队必须理解请求记忆化、数据缓存与客户端路由缓存的差异。 放到今天怎么实践为动态数据显式选择缓存策略；所有 Server Action 都做鉴权与输入校验，并用端到端测试覆盖缓存失效。 建议在真实项目中按以下顺序验证：  盘点当前版本、插件和运行环境，不带假设地记录现状。 建立最小可运行示例，确认新能力的边界和失败方式。 在测试或影子构建中比较行为、性能与最终产物。 保留回滚路径，再逐步扩大使用范围。  参考资料 Next.js 官方博客  </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/12/09/frontend-chronicle-2022-12-vite-4-ecosystem/" title="2022 前端技术演进：Vite 4：共享工具链生态进入稳定扩张期"><img class="post-bg" src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022 前端技术演进：Vite 4：共享工具链生态进入稳定扩张期" loading='lazy'></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/09/frontend-chronicle-2022-12-vite-4-ecosystem/" title="2022 前端技术演进：Vite 4：共享工具链生态进入稳定扩张期">2022 前端技术演进：Vite 4：共享工具链生态进入稳定扩张期</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-09T01:00:00.000Z" title="发表于 2022-12-09 09:00:00">2022-12-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/">前端年鉴</a></span></div><div class="content"> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。  当时发生了什么Vite 4 升级 Rollup 3，并伴随 Vitest、VitePress 以及多个元框架形成更完整生态。 核心变化 统一插件接口让框架、测试和文档工具共享能力 更快的大版本节奏配合清晰迁移指南 Node 支持周期开始直接影响 Vite 主版本  为什么重要开发服务器、测试、组件文档和框架构建逐渐共享一张模块图，减少重复配置，也放大插件兼容的重要性。 放到今天怎么实践把 Vite 配置保持在标准能力内，避免深度依赖内部 API；升级主版本时运行完整插件兼容测试。 建议在真实项目中按以下顺序验证：  盘点当前版本、插件和运行环境，不带假设地记录现状。 建立最小可运行示例，确认新能力的边界和失败方式。 在测试或影子构建中比较行为、性能与最终产物。 保留回滚路径，再逐步扩大使用范围。  参考资料 Vite 官方博客  </div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="author-info-name">Chili Hong</div><div class="author-info-description">前端开发者，记录工程实践、性能优化与效率工具</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/95y"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/95y" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">写可复用的经验，做有长期价值的技术积累。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/07/22/frontend-performance-core-web-vitals/" title="前端性能优化实战：围绕 Core Web Vitals 建立系统方法"><img src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端性能优化实战：围绕 Core Web Vitals 建立系统方法"/ loading='lazy'></a><div class="content"><a class="title" href="/2026/07/22/frontend-performance-core-web-vitals/" title="前端性能优化实战：围绕 Core Web Vitals 建立系统方法">前端性能优化实战：围绕 Core Web Vitals 建立系统方法</a><time datetime="2026-07-22T09:15:00.000Z" title="发表于 2026-07-22 17:15:00">2026-07-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/15/frontend-chronicle-2026-07-typescript-6-node-26-vite-8-1/" title="2026 前端技术演进：工具链进入新阶段：TypeScript 6、Node 26 与 Vite 8.1"><img src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026 前端技术演进：工具链进入新阶段：TypeScript 6、Node 26 与 Vite 8.1"/ loading='lazy'></a><div class="content"><a class="title" href="/2026/07/15/frontend-chronicle-2026-07-typescript-6-node-26-vite-8-1/" title="2026 前端技术演进：工具链进入新阶段：TypeScript 6、Node 26 与 Vite 8.1">2026 前端技术演进：工具链进入新阶段：TypeScript 6、Node 26 与 Vite 8.1</a><time datetime="2026-07-15T01:00:00.000Z" title="发表于 2026-07-15 09:00:00">2026-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/17/frontend-debug-frontend-memory-leak/" title="前端疑难排查：前端内存泄漏排查：监听器、闭包与未释放组件"><img src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端疑难排查：前端内存泄漏排查：监听器、闭包与未释放组件"/ loading='lazy'></a><div class="content"><a class="title" href="/2026/04/17/frontend-debug-frontend-memory-leak/" title="前端疑难排查：前端内存泄漏排查：监听器、闭包与未释放组件">前端疑难排查：前端内存泄漏排查：监听器、闭包与未释放组件</a><time datetime="2026-04-17T06:00:00.000Z" title="发表于 2026-04-17 14:00:00">2026-04-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/12/frontend-chronicle-2026-03-vite-8-rolldown/" title="2026 前端技术演进：Vite 8：Rolldown 统一内核正式落地"><img src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026 前端技术演进：Vite 8：Rolldown 统一内核正式落地"/ loading='lazy'></a><div class="content"><a class="title" href="/2026/03/12/frontend-chronicle-2026-03-vite-8-rolldown/" title="2026 前端技术演进：Vite 8：Rolldown 统一内核正式落地">2026 前端技术演进：Vite 8：Rolldown 统一内核正式落地</a><time datetime="2026-03-12T01:00:00.000Z" title="发表于 2026-03-12 09:00:00">2026-03-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/24/frontend-chronicle-2026-02-react-foundation/" title="2026 前端技术演进：React Foundation：核心项目进入更独立的治理阶段"><img src="/img/frontend-performance-cover.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026 前端技术演进：React Foundation：核心项目进入更独立的治理阶段"/ loading='lazy'></a><div class="content"><a class="title" href="/2026/02/24/frontend-chronicle-2026-02-react-foundation/" title="2026 前端技术演进：React Foundation：核心项目进入更独立的治理阶段">2026 前端技术演进：React Foundation：核心项目进入更独立的治理阶段</a><time datetime="2026-02-24T01:00:00.000Z" title="发表于 2026-02-24 09:00:00">2026-02-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/"><span class="card-category-list-name">前端年鉴</span><span class="card-category-list-count">35</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">前端开发</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E6%8E%92%E9%9A%9C/"><span class="card-category-list-name">前端排障</span><span class="card-category-list-count">10</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/2024/" style="font-size: 1.4em; color: #99a5b6">2024</a> <a href="/tags/TypeScript/" style="font-size: 1.2em; color: #999da3">TypeScript</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7%E9%93%BE/" style="font-size: 1.1em; color: #999">前端工具链</a> <a href="/tags/SSR/" style="font-size: 1.1em; color: #999">SSR</a> <a href="/tags/Bun/" style="font-size: 1.1em; color: #999">Bun</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" style="font-size: 1.1em; color: #999">前端工程化</a> <a href="/tags/Node-js/" style="font-size: 1.3em; color: #99a1ac">Node.js</a> <a href="/tags/2018/" style="font-size: 1.2em; color: #999da3">2018</a> <a href="/tags/Svelte/" style="font-size: 1.1em; color: #999">Svelte</a> <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/" style="font-size: 1.2em; color: #999da3">工程化</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD/" style="font-size: 1.1em; color: #999">前端性能</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">性能优化</a> <a href="/tags/CSS/" style="font-size: 1.1em; color: #999">CSS</a> <a href="/tags/2026/" style="font-size: 1.3em; color: #99a1ac">2026</a> <a href="/tags/Vue/" style="font-size: 1.4em; color: #99a5b6">Vue</a> <a href="/tags/JavaScript/" style="font-size: 1.2em; color: #999da3">JavaScript</a> <a href="/tags/2019/" style="font-size: 1.3em; color: #99a1ac">2019</a> <a href="/tags/jQuery/" style="font-size: 1.1em; color: #999">jQuery</a> <a href="/tags/2025/" style="font-size: 1.4em; color: #99a5b6">2025</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E6%8E%92%E9%9A%9C/" style="font-size: 1.5em; color: #99a9bf">前端排障</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/07/">
+            <span class="card-archive-list-date">
+              七月 2026
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/04/">
+            <span class="card-archive-list-date">
+              四月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/03/">
+            <span class="card-archive-list-date">
+              三月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              二月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/10/">
+            <span class="card-archive-list-date">
+              十月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/08/">
+            <span class="card-archive-list-date">
+              八月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/06/">
+            <span class="card-archive-list-date">
+              六月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">46</div></div><div class="webinfo-item"><div class="item-name">运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-01-17T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-07-22T09:47:37.958Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2022 - 2026 By Chili Hong</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div><div class="footer_custom_text">记录技术，也记录成长 · <a href="/atom.xml">RSS 订阅</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.1"></script><script src="/js/main.js?v=5.6.1"></script><script src="/js/tw_cn.js?v=5.6.1"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@3.0.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["记录技术，也记录成长","保持好奇，持续折腾"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed && typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["记录技术，也记录成长","保持好奇，持续折腾"])
+}
+typedJSFn.run(subtitleType)</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章、标签或关键词" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.6.1"></script></div></div></body></html>

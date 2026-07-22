@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>https://95y.github.io/tags/</loc>
-    
-    <lastmod>2026-07-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://95y.github.io/categories/</loc>
     
     <lastmod>2026-07-22</lastmod>
@@ -38,18 +29,414 @@
   </url>
   
   <url>
-    <loc>https://95y.github.io/2022/01/18/test-my-site/</loc>
+    <loc>https://95y.github.io/tags/</loc>
     
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2026-07-22</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://95y.github.io/2022/01/18/hello-world/</loc>
+    <loc>https://95y.github.io/2026/07/15/frontend-chronicle-2026-07-typescript-6-node-26-vite-8-1/</loc>
     
-    <lastmod>2022-01-18</lastmod>
+    <lastmod>2026-07-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2026/04/17/frontend-debug-frontend-memory-leak/</loc>
+    
+    <lastmod>2026-04-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2026/03/12/frontend-chronicle-2026-03-vite-8-rolldown/</loc>
+    
+    <lastmod>2026-03-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2026/02/24/frontend-chronicle-2026-02-react-foundation/</loc>
+    
+    <lastmod>2026-02-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2025/12/03/frontend-chronicle-2025-12-vite-8-beta-rolldown/</loc>
+    
+    <lastmod>2025-12-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2025/10/21/frontend-chronicle-2025-10-react-compiler-next-16/</loc>
+    
+    <lastmod>2025-10-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2025/08/15/frontend-debug-typescript-never-inference/</loc>
+    
+    <lastmod>2025-08-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2025/06/24/frontend-chronicle-2025-06-vite-7-baseline/</loc>
+    
+    <lastmod>2025-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2025/02/14/frontend-chronicle-2025-02-tailwind-4-and-cra-sunset/</loc>
+    
+    <lastmod>2025-02-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2024/12/05/frontend-chronicle-2024-12-react-19-actions/</loc>
+    
+    <lastmod>2024-12-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2024/11/26/frontend-chronicle-2024-11-vite-6-environment-api/</loc>
+    
+    <lastmod>2024-11-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2024/10/21/frontend-chronicle-2024-10-nextjs-15-caching/</loc>
+    
+    <lastmod>2024-10-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2024/09/03/frontend-chronicle-2024-09-vue-3-5-reactivity/</loc>
+    
+    <lastmod>2024-09-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2024/08/16/frontend-debug-ssr-hydration-mismatch/</loc>
+    
+    <lastmod>2024-08-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2023/11/16/frontend-chronicle-2023-11-vite-5-rollup-4/</loc>
+    
+    <lastmod>2023-11-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2023/09/08/frontend-chronicle-2023-09-bun-1-runtime-toolkit/</loc>
+    
+    <lastmod>2023-09-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2023/08/18/frontend-debug-esm-cjs-module-errors/</loc>
+    
+    <lastmod>2023-08-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2023/05/04/frontend-chronicle-2023-05-nextjs-app-router-stable/</loc>
+    
+    <lastmod>2023-05-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2022/12/09/frontend-chronicle-2022-12-vite-4-ecosystem/</loc>
+    
+    <lastmod>2022-12-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2022/10/25/frontend-chronicle-2022-10-nextjs-13-app-router/</loc>
+    
+    <lastmod>2022-10-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2022/09/16/frontend-debug-cors-cookie-samesite/</loc>
+    
+    <lastmod>2022-09-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2022/04/19/frontend-chronicle-2022-04-node-18-fetch/</loc>
+    
+    <lastmod>2022-04-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2022/03/29/frontend-chronicle-2022-03-react-18-concurrent-rendering/</loc>
+    
+    <lastmod>2022-03-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2022/02/07/frontend-chronicle-2022-02-vue-3-default/</loc>
+    
+    <lastmod>2022-02-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2021/10/26/frontend-chronicle-2021-10-nextjs-12-swc/</loc>
+    
+    <lastmod>2021-10-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2021/09/17/frontend-debug-chunk-load-error-after-deploy/</loc>
+    
+    <lastmod>2021-09-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2021/04/20/frontend-chronicle-2021-04-node-16-esm/</loc>
+    
+    <lastmod>2021-04-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2021/02/16/frontend-chronicle-2021-02-vite-2/</loc>
+    
+    <lastmod>2021-02-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2020/12/21/frontend-chronicle-2020-12-react-server-components-research/</loc>
+    
+    <lastmod>2020-12-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2020/10/10/frontend-chronicle-2020-10-webpack-5/</loc>
+    
+    <lastmod>2020-10-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2020/09/18/frontend-chronicle-2020-09-vue-3-composition-api/</loc>
+    
+    <lastmod>2020-09-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2020/08/21/frontend-debug-vue-reactivity-lost/</loc>
+    
+    <lastmod>2020-08-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2020/07/15/frontend-chronicle-2020-07-vite-native-esm-origin/</loc>
+    
+    <lastmod>2020-07-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2020/05/13/frontend-chronicle-2020-05-deno-1-secure-runtime/</loc>
+    
+    <lastmod>2020-05-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2019/11/05/frontend-chronicle-2019-11-typescript-3-7/</loc>
+    
+    <lastmod>2019-11-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2019/08/16/frontend-debug-react-hooks-stale-closure/</loc>
+    
+    <lastmod>2019-08-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2019/04/22/frontend-chronicle-2019-04-svelte-3-compiler-reactivity/</loc>
+    
+    <lastmod>2019-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2019/02/06/frontend-chronicle-2019-02-react-hooks/</loc>
+    
+    <lastmod>2019-02-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2018/08/27/frontend-chronicle-2018-08-babel-7-modern-transpilation/</loc>
+    
+    <lastmod>2018-08-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2018/07/20/frontend-debug-css-z-index-stacking-context/</loc>
+    
+    <lastmod>2018-07-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2018/02/25/frontend-chronicle-2018-02-webpack-4-zero-config/</loc>
+    
+    <lastmod>2018-02-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2017/11/18/frontend-debug-event-loop-async-order/</loc>
+    
+    <lastmod>2017-11-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2017/09/26/frontend-chronicle-2017-09-react-16-fiber/</loc>
+    
+    <lastmod>2017-09-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2017/06/30/frontend-chronicle-2017-06-es2017-async-await/</loc>
+    
+    <lastmod>2017-06-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/2017/04/15/frontend-chronicle-2017-04-jquery-and-the-dom-era/</loc>
+    
+    <lastmod>2017-04-15</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -63,6 +450,223 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://95y.github.io/tags/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/jQuery/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/2017/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/Babel/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/2018/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/React/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/2019/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/Svelte/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/JavaScript/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/Deno/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/2020/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/webpack/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/TypeScript/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/Vite/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/Vue/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/2021/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/Node-js/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/Next-js/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/2022/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/2023/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/Bun/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/2024/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7%E9%93%BE/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/2025/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/2026/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/%E5%89%8D%E7%AB%AF%E6%8E%92%E9%9A%9C/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/Web-%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/CSS/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/tags/SSR/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>https://95y.github.io/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD/</loc>
@@ -79,14 +683,7 @@
   </url>
   
   <url>
-    <loc>https://95y.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://95y.github.io/tags/Hexo/</loc>
+    <loc>https://95y.github.io/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -95,14 +692,21 @@
 
   
   <url>
-    <loc>https://95y.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</loc>
+    <loc>https://95y.github.io/categories/%E5%89%8D%E7%AB%AF%E5%B9%B4%E9%89%B4/</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://95y.github.io/categories/%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://95y.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8E%92%E9%9A%9C/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://95y.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
