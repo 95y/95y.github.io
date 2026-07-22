@@ -1,5 +1,5 @@
 ---
-title: "2025 前端技术演进：Vite 8 Beta：Rolldown 开始统一开发与生产构建"
+title: "Vite 8 Beta：Rolldown 开始统一开发与生产构建"
 date: 2025-12-03 09:00:00
 tags:
   - 前端年鉴
@@ -8,37 +8,41 @@ tags:
 categories:
   - 前端年鉴
 description: "Vite 8 Beta 完整集成 Rolldown，准备结束开发阶段使用 esbuild、生产阶段使用 Rollup 的双内核历史。梳理核心变化、工程影响与今天的实践建议。"
-cover: /img/frontend-performance-cover.svg
+cover: /img/covers/frontend-chronicle-vite-8-beta-rolldown.svg
+top_img: /img/covers/frontend-chronicle-vite-8-beta-rolldown.svg
 toc: true
 ---
+这不是一篇发布日志翻译。我只挑项目里真正能感知到的变化，再看看它们放到今天是否仍然值得借鉴。
 
-> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。
+## 这次升级真正解决了什么
 
-## 当时发生了什么
+统一内核可以减少开发与生产行为差异，但底层替换仍可能暴露依赖解析、插件钩子和输出顺序差异。
 
-Vite 8 Beta 完整集成 Rolldown，准备结束开发阶段使用 esbuild、生产阶段使用 Rollup 的双内核历史。
+## 先动手跑一下
 
-## 核心变化
+先用一份小配置验证升级前后的行为：
+
+```js
+import { defineConfig } from 'vite'
+export default defineConfig({
+  build: { target: 'es2020' }
+})
+```
+
+## 这部分最容易被忽略
 
 - Rust 编写的 Rolldown 统一主要打包路径
 - Rollup 兼容目标帮助现有插件渐进迁移
 - 大项目构建性能成为本轮架构升级核心
 
-## 为什么重要
+## 从当时的开发现场说起
 
-统一内核可以减少开发与生产行为差异，但底层替换仍可能暴露依赖解析、插件钩子和输出顺序差异。
+Vite 8 Beta 完整集成 Rolldown，准备结束开发阶段使用 esbuild、生产阶段使用 Rollup 的双内核历史。
 
-## 放到今天怎么实践
+## 别急着把老项目全部重写
 
 Beta 适合在 CI 影子构建中验证，不应未经回归直接替换生产链路；重点比较产物、动态导入和插件行为。
 
-建议在真实项目中按以下顺序验证：
-
-1. 盘点当前版本、插件和运行环境，不带假设地记录现状。
-2. 建立最小可运行示例，确认新能力的边界和失败方式。
-3. 在测试或影子构建中比较行为、性能与最终产物。
-4. 保留回滚路径，再逐步扩大使用范围。
-
-## 参考资料
+## 版本记录与延伸阅读
 
 - [Vite 8.0](https://vite.dev/blog/announcing-vite8)

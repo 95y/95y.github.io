@@ -1,5 +1,5 @@
 ---
-title: "2024 前端技术演进：Vite 6：Environment API 面向多运行时框架"
+title: "Vite 6：Environment API 面向多运行时框架"
 date: 2024-11-26 09:00:00
 tags:
   - 前端年鉴
@@ -8,37 +8,41 @@ tags:
 categories:
   - 前端年鉴
 description: "Vite 6 推出实验性 Environment API，让框架可以为客户端、SSR、边缘或其他运行时定义不同模块执行环境。梳理核心变化、工程影响与今天的实践建议。"
-cover: /img/frontend-performance-cover.svg
+cover: /img/covers/frontend-chronicle-vite-6-environment-api.svg
+top_img: /img/covers/frontend-chronicle-vite-6-environment-api.svg
 toc: true
 ---
+整理这段历史时，我更想回答一个实际问题：这次升级到底替开发者省掉了什么，又带来了哪些新的约束？
 
-> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。
-
-## 当时发生了什么
-
-Vite 6 推出实验性 Environment API，让框架可以为客户端、SSR、边缘或其他运行时定义不同模块执行环境。
-
-## 核心变化
-
-- 同一开发服务器可以表达多个运行时环境
-- 框架作者能复用更接近生产的开发基础设施
-- Sass 等生态默认 API 继续现代化
-
-## 为什么重要
+## 收益背后的代价
 
 Vite 从 SPA 构建工具继续下沉为全栈框架基础设施，环境边界成为插件设计的重要维度。
 
-## 放到今天怎么实践
+## 2024 年，项目里正在发生什么
+
+Vite 6 推出实验性 Environment API，让框架可以为客户端、SSR、边缘或其他运行时定义不同模块执行环境。
+
+## 版本号之外的变化
+
+1. 同一开发服务器可以表达多个运行时环境
+2. 框架作者能复用更接近生产的开发基础设施
+3. Sass 等生态默认 API 继续现代化
+
+## 用最小例子感受一下
+
+先用一份小配置验证升级前后的行为：
+
+```js
+import { defineConfig } from 'vite'
+export default defineConfig({
+  build: { target: 'es2020' }
+})
+```
+
+## 今天再做一次选择
 
 普通 SPA 不必追逐实验 API；框架和插件作者应避免假设所有模块都运行在 Node 或浏览器。
 
-建议在真实项目中按以下顺序验证：
-
-1. 盘点当前版本、插件和运行环境，不带假设地记录现状。
-2. 建立最小可运行示例，确认新能力的边界和失败方式。
-3. 在测试或影子构建中比较行为、性能与最终产物。
-4. 保留回滚路径，再逐步扩大使用范围。
-
-## 参考资料
+## 相关发布记录
 
 - [Vite 官方博客](https://vite.dev/blog/)

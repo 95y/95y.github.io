@@ -1,5 +1,5 @@
 ---
-title: "2017 前端技术演进：React 16 与 Fiber：渲染架构为并发能力打下基础"
+title: "React 16 与 Fiber：渲染架构为并发能力打下基础"
 date: 2017-09-26 09:00:00
 tags:
   - 前端年鉴
@@ -8,37 +8,42 @@ tags:
 categories:
   - 前端年鉴
 description: "React 16 发布新的 Fiber 协调器，并带来错误边界、Fragments、Portal 等能力。梳理核心变化、工程影响与今天的实践建议。"
-cover: /img/frontend-performance-cover.svg
+cover: /img/covers/frontend-chronicle-react-16-fiber.svg
+top_img: /img/covers/frontend-chronicle-react-16-fiber.svg
 toc: true
 ---
+整理这段历史时，我更想回答一个实际问题：这次升级到底替开发者省掉了什么，又带来了哪些新的约束？
 
-> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。
-
-## 当时发生了什么
-
-React 16 发布新的 Fiber 协调器，并带来错误边界、Fragments、Portal 等能力。对业务代码而言 API 变化有限，但底层渲染模型已经重构。
-
-## 核心变化
-
-- 错误边界让组件树局部失败时可以降级展示
-- Fragments 减少只为满足结构而添加的包装节点
-- Fiber 把渲染工作拆成可调度单元，为后来的并发渲染铺路
-
-## 为什么重要
+## 这次升级真正解决了什么
 
 这是一次“用户看见的功能不多、架构意义很大”的升级。前端框架开始把调度优先级纳入渲染系统，而不仅是同步计算虚拟 DOM。
 
-## 放到今天怎么实践
+## 从当时的开发现场说起
+
+React 16 发布新的 Fiber 协调器，并带来错误边界、Fragments、Portal 等能力。对业务代码而言 API 变化有限，但底层渲染模型已经重构。
+
+## 这部分最容易被忽略
+
+1. 错误边界让组件树局部失败时可以降级展示
+2. Fragments 减少只为满足结构而添加的包装节点
+3. Fiber 把渲染工作拆成可调度单元，为后来的并发渲染铺路
+
+## 用最小例子感受一下
+
+React 16 开始可以用错误边界隔离局部渲染失败：
+
+```jsx
+class ErrorBoundary extends React.Component {
+  state = { failed: false }
+  static getDerivedStateFromError() { return { failed: true } }
+  render() { return this.state.failed ? <Fallback /> : this.props.children }
+}
+```
+
+## 别急着把老项目全部重写
 
 理解 Fiber 不需要依赖内部字段；更重要的是保持 render 纯净、正确处理副作用，并接受渲染可能被暂停或重新执行。
 
-建议在真实项目中按以下顺序验证：
-
-1. 盘点当前版本、插件和运行环境，不带假设地记录现状。
-2. 建立最小可运行示例，确认新能力的边界和失败方式。
-3. 在测试或影子构建中比较行为、性能与最终产物。
-4. 保留回滚路径，再逐步扩大使用范围。
-
-## 参考资料
+## 版本记录与延伸阅读
 
 - [React v16.0](https://legacy.reactjs.org/blog/2017/09/26/react-v16.0.html)

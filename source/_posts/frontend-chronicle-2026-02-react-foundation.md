@@ -1,5 +1,5 @@
 ---
-title: "2026 前端技术演进：React Foundation：核心项目进入更独立的治理阶段"
+title: "React Foundation：核心项目进入更独立的治理阶段"
 date: 2026-02-24 09:00:00
 tags:
   - 前端年鉴
@@ -8,37 +8,39 @@ tags:
 categories:
   - 前端年鉴
 description: "React Foundation 在 Linux Foundation 下成立，React 的治理从单一公司主导迈向更独立的组织结构。梳理核心变化、工程影响与今天的实践建议。"
-cover: /img/frontend-performance-cover.svg
+cover: /img/covers/frontend-chronicle-react-foundation.svg
+top_img: /img/covers/frontend-chronicle-react-foundation.svg
 toc: true
 ---
+如果把时间拨回 2026 年，React 所面对的问题和今天并不完全一样。回头看这次变化，最有意思的不是版本号，而是开发方式从这里拐了一个弯。
 
-> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。
-
-## 当时发生了什么
+## React 当时想解决的问题
 
 React Foundation 在 Linux Foundation 下成立，React 的治理从单一公司主导迈向更独立的组织结构。
 
-## 核心变化
+## 先看一段代码
+
+组件保持纯净，副作用只负责同步外部系统：
+
+```jsx
+function Counter() {
+  const [count, setCount] = useState(0)
+  return <button onClick={() => setCount(value => value + 1)}>{count}</button>
+}
+```
+
+## 为什么后来大家都跟进了
+
+成熟前端框架的风险不只有 API 变化，也包括维护资金、治理和生态协调。基金会化有助于降低单一组织风险。
 
 - 项目治理与商标、活动等生态工作获得独立载体
 - 多家生态参与者可以在共同框架下投入资源
 - 技术路线与社区治理的透明度成为长期关注点
 
-## 为什么重要
-
-成熟前端框架的风险不只有 API 变化，也包括维护资金、治理和生态协调。基金会化有助于降低单一组织风险。
-
-## 放到今天怎么实践
+## 如果现在接手这样的项目
 
 团队选型仍应关注发布质量和兼容策略，而不是只看组织形式；关键依赖要有升级窗口和替代预案。
 
-建议在真实项目中按以下顺序验证：
-
-1. 盘点当前版本、插件和运行环境，不带假设地记录现状。
-2. 建立最小可运行示例，确认新能力的边界和失败方式。
-3. 在测试或影子构建中比较行为、性能与最终产物。
-4. 保留回滚路径，再逐步扩大使用范围。
-
-## 参考资料
+## 我参考的资料
 
 - [React Foundation](https://react.dev/blog/2026/02/24/the-react-foundation)

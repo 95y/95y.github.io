@@ -1,5 +1,5 @@
 ---
-title: "2023 前端技术演进：Vite 5：Rollup 4 与现代 Node 基线"
+title: "Vite 5：Rollup 4 与现代 Node 基线"
 date: 2023-11-16 09:00:00
 tags:
   - 前端年鉴
@@ -8,37 +8,39 @@ tags:
 categories:
   - 前端年鉴
 description: "Vite 5 切换到 Rollup 4，要求 Node.js 18/20+，清理废弃 API，并继续改善开发服务器性能分析能力。梳理核心变化、工程影响与今天的实践建议。"
-cover: /img/frontend-performance-cover.svg
+cover: /img/covers/frontend-chronicle-vite-5-rollup-4.svg
+top_img: /img/covers/frontend-chronicle-vite-5-rollup-4.svg
 toc: true
 ---
+很多技术在发布当天看起来只是多了几个 API，真正的影响往往要过一两年才看得清。Vite 这次变化就是一个典型例子。
 
-> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。
-
-## 当时发生了什么
+## 从当时的开发现场说起
 
 Vite 5 切换到 Rollup 4，要求 Node.js 18/20+，清理废弃 API，并继续改善开发服务器性能分析能力。
 
-## 核心变化
+工具升级越来越与 Node 生命周期、模块系统和插件维护状态绑定，长期不升级的成本会集中爆发。
+
+## 代码里最直观的变化
+
+先用一份小配置验证升级前后的行为：
+
+```js
+import { defineConfig } from 'vite'
+export default defineConfig({
+  build: { target: 'es2020' }
+})
+```
+
+## 版本号之外的变化
 
 - 生产构建获得 Rollup 4 的性能改进
 - CJS Node API 被弃用，推动配置与插件转向 ESM
 - server.warmup 可提前转换常用模块
 
-## 为什么重要
-
-工具升级越来越与 Node 生命周期、模块系统和插件维护状态绑定，长期不升级的成本会集中爆发。
-
-## 放到今天怎么实践
+## 别急着把老项目全部重写
 
 先升级 Node 和配置文件模块格式，再升级 Vite；用 ecosystem CI 思路验证关键插件而不是只看 dev 能否启动。
 
-建议在真实项目中按以下顺序验证：
-
-1. 盘点当前版本、插件和运行环境，不带假设地记录现状。
-2. 建立最小可运行示例，确认新能力的边界和失败方式。
-3. 在测试或影子构建中比较行为、性能与最终产物。
-4. 保留回滚路径，再逐步扩大使用范围。
-
-## 参考资料
+## 版本记录与延伸阅读
 
 - [Vite 官方博客](https://vite.dev/blog/)

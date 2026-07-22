@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 // Keep this generator outside Hexo's reserved scripts directory.
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const postsDir = path.join(root, 'source', '_posts')
+const coversDir = path.join(root, 'source', 'img', 'covers')
 
 const sources = {
   jquery: ['jQuery 3.2.1 发布说明', 'https://blog.jquery.com/2017/03/20/jquery-3-2-1-now-available/'],
@@ -466,11 +467,322 @@ function references(keys) {
   }).join('\n')
 }
 
+function codeExample(post) {
+  const bySlug = {
+    'jquery-and-the-dom-era': ['js', '老项目里很常见的事件委托：', ["$('.js-menu').on('click', '.js-item', function () {", "  $(this).toggleClass('is-active')", '})']],
+    'es2017-async-await': ['js', '没有依赖关系的请求应该并发：', ['const [profile, permissions] = await Promise.all([', '  fetchProfile(userId),', '  fetchPermissions(userId)', '])']],
+    'react-16-fiber': ['jsx', 'React 16 开始可以用错误边界隔离局部渲染失败：', ['class ErrorBoundary extends React.Component {', '  state = { failed: false }', '  static getDerivedStateFromError() { return { failed: true } }', '  render() { return this.state.failed ? <Fallback /> : this.props.children }', '}']],
+    'react-hooks': ['jsx', '自定义 Hook 把订阅和清理放在同一个地方：', ['function useOnlineStatus() {', '  const [online, setOnline] = useState(navigator.onLine)', '  useEffect(() => {', "    const update = () => setOnline(navigator.onLine)", "    window.addEventListener('online', update)", "    return () => window.removeEventListener('online', update)", '  }, [])', '  return online', '}']],
+    'svelte-3-compiler-reactivity': ['svelte', 'Svelte 3 的响应式关系可以直接写出来：', ['<script>', '  let price = 99', '  let count = 1', '  $: total = price * count', '</script>', '<strong>{total}</strong>']],
+    'typescript-3-7': ['ts', '可选链和空值合并不会误伤合法的零值：', ['const retryCount = config.network?.retryCount ?? 3', "const name = user.profile?.nickname ?? '匿名用户'"]],
+    'deno-1-secure-runtime': ['bash', 'Deno 脚本把所需权限写在启动命令里：', ['deno run --allow-net=api.example.com --allow-read=./config app.ts']],
+    'webpack-5': ['js', 'Module Federation 需要明确远程边界与共享依赖：', ['new ModuleFederationPlugin({', "  name: 'checkout',", "  exposes: { './Cart': './src/Cart' },", "  shared: { react: { singleton: true } }", '})']],
+    'react-18-concurrent-rendering': ['jsx', '不紧急的列表更新可以放进 transition：', ['const [isPending, startTransition] = useTransition()', 'function handleChange(value) {', '  setInput(value)', '  startTransition(() => setKeyword(value))', '}']],
+    'node-18-fetch': ['js', '服务端 fetch 也要处理超时与非 2xx：', ['const response = await fetch(url, { signal: AbortSignal.timeout(5000) })', "if (!response.ok) throw new Error('HTTP ' + response.status)"]],
+    'nextjs-13-app-router': ['tsx', '页面留在服务器，把真正需要交互的叶子放到客户端：', ['export default async function Page() {', '  const products = await getProducts()', '  return <ProductList products={products} />', '}']],
+    'react-19-actions': ['jsx', 'Action 可以承接提交和 pending 状态：', ['const [error, action, pending] = useActionState(renameUser, null)', 'return <form action={action}>', '  <input name="name" />', '  <button disabled={pending}>保存</button>', '</form>']],
+    'tailwind-4-and-cra-sunset': ['css', 'Tailwind CSS 4 把主题配置带回 CSS：', ['@import "tailwindcss";', '@theme {', '  --color-brand-500: oklch(0.62 0.19 255);', '}']],
+    'typescript-6-node-26-vite-8-1': ['json', '现代工具链最好用显式配置接住升级：', ['{', '  "compilerOptions": {', '    "strict": true,', '    "module": "esnext",', '    "moduleResolution": "bundler",', '    "types": ["node"]', '  }', '}']],
+    'event-loop-async-order': ['js', '先运行最小例子，再判断微任务和定时器顺序：', ["console.log('A')", "queueMicrotask(() => console.log('microtask'))", "setTimeout(() => console.log('timer'), 0)", "console.log('B')"]],
+    'css-z-index-stacking-context': ['css', '问题经常藏在创建层叠上下文的父元素：', ['.card { transform: translateZ(0); }', '.overlay-root {', '  position: fixed;', '  inset: 0;', '  z-index: var(--z-modal);', '}']],
+    'react-hooks-stale-closure': ['jsx', '依赖旧状态的更新改成函数式写法：', ['useEffect(() => {', '  const timer = setInterval(() => setCount(value => value + 1), 1000)', '  return () => clearInterval(timer)', '}, [])']],
+    'vue-reactivity-lost': ['ts', '解构 reactive 对象时保留 ref：', ["const state = reactive({ keyword: '', page: 1 })", 'const { keyword, page } = toRefs(state)']],
+    'chunk-load-error-after-deploy': ['js', '动态导入失败时提供可控恢复路径：', ['try {', "  return await import('./pages/Report.js')", '} catch (error) {', "  if (error.name === 'ChunkLoadError') location.reload()", '  throw error', '}']],
+    'cors-cookie-samesite': ['js', '前后端两侧都要允许凭据：', ["await fetch('https://api.example.com/profile', { credentials: 'include' })", "res.setHeader('Access-Control-Allow-Origin', 'https://app.example.com')", "res.setHeader('Access-Control-Allow-Credentials', 'true')"]],
+    'esm-cjs-module-errors': ['js', 'CommonJS 加载纯 ESM 包时收敛动态导入边界：', ['async function loadPackage() {', "  const { default: api } = await import('esm-only-package')", '  return api', '}']],
+    'ssr-hydration-mismatch': ['jsx', '首屏使用确定值，浏览器信息在水合后更新：', ["const [timezone, setTimezone] = useState('UTC')", 'useEffect(() => {', '  setTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone)', '}, [])']],
+    'typescript-never-inference': ['ts', '空容器缺少推导信息时直接声明元素类型：', ['type Task = { id: string; done: boolean }', 'const tasks: Task[] = []', "tasks.push({ id: 'build', done: false })"]],
+    'frontend-memory-leak': ['js', '监听器和请求都要有对称的释放路径：', ['const controller = new AbortController()', "window.addEventListener('resize', handleResize)", 'fetch(url, { signal: controller.signal })', 'return () => {', '  controller.abort()', "  window.removeEventListener('resize', handleResize)", '}']]
+  }
+
+  if (bySlug[post.slug]) return bySlug[post.slug]
+  if (post.topic === 'Vite') return ['js', '先用一份小配置验证升级前后的行为：', ["import { defineConfig } from 'vite'", 'export default defineConfig({', "  build: { target: 'es2020' }", '})']]
+  if (post.topic === 'Vue') return ['vue', '把状态、派生值和副作用的边界写清楚：', ['<script setup>', "import { computed, ref } from 'vue'", 'const count = ref(0)', 'const doubled = computed(() => count.value * 2)', '</script>']]
+  if (post.topic === 'React') return ['jsx', '组件保持纯净，副作用只负责同步外部系统：', ['function Counter() {', '  const [count, setCount] = useState(0)', '  return <button onClick={() => setCount(value => value + 1)}>{count}</button>', '}']]
+  if (post.topic === 'Next.js') return ['ts', '缓存策略与数据写入放在同一个业务边界里：', ["'use server'", "import { revalidatePath } from 'next/cache'", 'await save(data)', "revalidatePath('/posts')"]]
+  if (post.topic === 'Node.js') return ['js', '运行时升级前先验证实际支持的 API：', ["console.log(process.version)", "console.log(typeof fetch, typeof AbortSignal.timeout)"]]
+  if (post.topic === 'webpack') return ['js', '构建配置先保持可测量，再逐项加入优化：', ['module.exports = {', "  mode: 'production',", "  entry: './src/index.js'", '}']]
+  return ['js', '先把问题缩小到一个能独立运行的例子：', ['function reproduce(input) {', '  console.log({ input })', '  return input', '}']]
+}
+
+function renderExample(post) {
+  const [language, caption, lines] = codeExample(post)
+  const headings = ['先看一段代码', '用最小例子感受一下', '代码里最直观的变化', '先动手跑一下', '把问题缩小到这几行']
+  const heading = headings[hashCode(post.slug) % headings.length]
+  const fence = String.fromCharCode(96).repeat(3)
+  return ['## ' + heading, '', caption, '', fence + language, ...lines, fence].join('\n')
+}
+
+const palettes = [
+  ['#0f172a', '#2563eb', '#22d3ee'],
+  ['#18181b', '#7c3aed', '#f472b6'],
+  ['#052e16', '#059669', '#a3e635'],
+  ['#451a03', '#ea580c', '#facc15'],
+  ['#172554', '#4f46e5', '#c084fc'],
+  ['#082f49', '#0284c7', '#67e8f9'],
+  ['#3f0d2a', '#db2777', '#fb7185'],
+  ['#1c1917', '#78716c', '#f59e0b'],
+  ['#052e2b', '#0d9488', '#5eead4'],
+  ['#312e81', '#6366f1', '#38bdf8'],
+  ['#3b0764', '#9333ea', '#e879f9'],
+  ['#111827', '#dc2626', '#fb923c']
+]
+
+function hashCode(value) {
+  let hash = 0
+  for (const character of value) hash = ((hash << 5) - hash + character.codePointAt(0)) | 0
+  return Math.abs(hash)
+}
+
+function xml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&apos;')
+}
+
+function wrapTitle(value, maxWidth = 15, maxLines = 3) {
+  const lines = []
+  let line = ''
+  let width = 0
+
+  for (const character of value) {
+    const characterWidth = character.codePointAt(0) > 255 ? 1 : 0.56
+    if (line && width + characterWidth > maxWidth) {
+      lines.push(line.trim())
+      line = ''
+      width = 0
+    }
+    line += character
+    width += characterWidth
+  }
+
+  if (line.trim()) lines.push(line.trim())
+  if (lines.length > maxLines) {
+    lines.length = maxLines
+    lines[maxLines - 1] = `${lines[maxLines - 1].slice(0, -1)}…`
+  }
+  return lines
+}
+
+function coverName(post, kind) {
+  return `frontend-${kind}-${post.slug}.svg`
+}
+
+function coverUrl(post, kind) {
+  return `/img/covers/${coverName(post, kind)}`
+}
+
+function renderCover(post, kind) {
+  const hash = hashCode(`${kind}-${post.slug}`)
+  const [dark, primary, accent] = palettes[hash % palettes.length]
+  const title = kind === 'chronicle'
+    ? `${post.date.slice(0, 4)} · ${post.title}`
+    : post.title
+  const lines = wrapTitle(title)
+  const series = kind === 'chronicle' ? 'FRONTEND CHRONICLE' : 'DEBUGGING FIELD GUIDE'
+  const badge = kind === 'chronicle' ? post.date.slice(0, 4) : 'FIX & PREVENT'
+  const lineMarkup = lines
+    .map((line, index) => `<tspan x="72" y="${238 + index * 68}">${xml(line)}</tspan>`)
+    .join('')
+  const orbit = 112 + (hash % 70)
+  const angle = 18 + (hash % 42)
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">${xml(title)}</title>
+  <desc id="desc">${xml(post.topic)} 技术文章封面</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="${dark}"/>
+      <stop offset="0.58" stop-color="${primary}"/>
+      <stop offset="1" stop-color="${accent}"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
+      <path d="M38 0H0V38" fill="none" stroke="#fff" stroke-opacity=".07"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity=".3"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="630" rx="28" fill="url(#grid)"/>
+  <circle cx="1030" cy="110" r="280" fill="url(#glow)"/>
+  <circle cx="1030" cy="316" r="${orbit}" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="2" stroke-dasharray="9 13" transform="rotate(${angle} 1030 316)"/>
+  <circle cx="1030" cy="316" r="74" fill="#fff" fill-opacity=".12" stroke="#fff" stroke-opacity=".42"/>
+  <path d="M992 316h76M1030 278v76" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".78"/>
+  <g filter="url(#shadow)">
+    <rect x="72" y="62" width="270" height="44" rx="22" fill="#fff" fill-opacity=".14" stroke="#fff" stroke-opacity=".3"/>
+    <text x="94" y="91" fill="#fff" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="700" letter-spacing="2">${series}</text>
+  </g>
+  <text fill="#fff" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="50" font-weight="800" letter-spacing="-1">${lineMarkup}</text>
+  <g transform="translate(72 516)">
+    <rect width="154" height="46" rx="23" fill="#fff" fill-opacity=".16" stroke="#fff" stroke-opacity=".28"/>
+    <text x="77" y="30" text-anchor="middle" fill="#fff" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="700">${xml(badge)}</text>
+    <text x="178" y="30" fill="#fff" fill-opacity=".86" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="600">${xml(post.topic)}</text>
+  </g>
+  <text x="1128" y="578" text-anchor="end" fill="#fff" fill-opacity=".72" font-family="Inter, sans-serif" font-size="18" font-weight="700" letter-spacing="2">95Y.DEV</text>
+</svg>
+`
+}
+
+function markdownSection(title, body) {
+  return ['## ' + title, '', body].join('\n')
+}
+
+function bulletList(items) {
+  return items.map((item) => '- ' + item).join('\n')
+}
+
+function numberedList(items) {
+  return items.map((item, index) => (index + 1) + '. ' + item).join('\n')
+}
+
+function pick(post, salt, values) {
+  return values[hashCode(post.slug + salt) % values.length]
+}
+
+function renderHistoryBody(post) {
+  const year = post.date.slice(0, 4)
+  const variant = hashCode(post.slug) % 5
+  const intros = [
+    '如果把时间拨回 ' + year + ' 年，' + post.topic + ' 所面对的问题和今天并不完全一样。回头看这次变化，最有意思的不是版本号，而是开发方式从这里拐了一个弯。',
+    '整理这段历史时，我更想回答一个实际问题：这次升级到底替开发者省掉了什么，又带来了哪些新的约束？',
+    '很多技术在发布当天看起来只是多了几个 API，真正的影响往往要过一两年才看得清。' + post.topic + ' 这次变化就是一个典型例子。',
+    '这不是一篇发布日志翻译。我只挑项目里真正能感知到的变化，再看看它们放到今天是否仍然值得借鉴。',
+    '前端工具更新很快，但并不是每个版本都值得记住。' + year + ' 年这次变化之所以留下来，是因为它改变了后续项目的默认做法。'
+  ]
+  const contextHeading = pick(post, 'context', ['先把时间拨回 ' + year + ' 年', year + ' 年，项目里正在发生什么', post.topic + ' 当时想解决的问题', '从当时的开发现场说起'])
+  const detailHeading = pick(post, 'detail', ['三个值得记住的细节', '版本号之外的变化', '落到工程里，我关注这几件事', '这部分最容易被忽略'])
+  const impactHeading = pick(post, 'impact', ['这次升级真正解决了什么', '真正改变开发体验的地方', '收益背后的代价', '为什么后来大家都跟进了'])
+  const practiceHeading = pick(post, 'practice', ['如果现在接手这样的项目', '今天再做一次选择', '我会怎么落地', '别急着把老项目全部重写'])
+  const sourcesBlock = markdownSection(pick(post, 'source', ['我参考的资料', '版本记录与延伸阅读', '继续往下看', '相关发布记录']), references(post.refs))
+
+  if (variant === 0) {
+    return [
+      intros[variant],
+      markdownSection(contextHeading, post.event),
+      renderExample(post),
+      markdownSection(impactHeading, post.impact + '\n\n' + bulletList(post.changes)),
+      markdownSection(practiceHeading, post.today),
+      sourcesBlock
+    ].join('\n\n')
+  }
+
+  if (variant === 1) {
+    return [
+      intros[variant],
+      markdownSection(impactHeading, post.impact),
+      markdownSection(contextHeading, post.event),
+      markdownSection(detailHeading, numberedList(post.changes)),
+      renderExample(post),
+      markdownSection(practiceHeading, post.today),
+      sourcesBlock
+    ].join('\n\n')
+  }
+
+  if (variant === 2) {
+    return [
+      intros[variant],
+      markdownSection(contextHeading, post.event + '\n\n' + post.impact),
+      renderExample(post),
+      markdownSection(detailHeading, bulletList(post.changes)),
+      markdownSection(practiceHeading, post.today),
+      sourcesBlock
+    ].join('\n\n')
+  }
+
+  if (variant === 3) {
+    return [
+      intros[variant],
+      markdownSection(impactHeading, post.impact),
+      renderExample(post),
+      markdownSection(detailHeading, bulletList(post.changes)),
+      markdownSection(contextHeading, post.event),
+      markdownSection(practiceHeading, post.today),
+      sourcesBlock
+    ].join('\n\n')
+  }
+
+  return [
+    intros[variant],
+    post.event,
+    renderExample(post),
+    markdownSection(detailHeading, post.changes.join('；') + '。'),
+    markdownSection(impactHeading, post.impact),
+    markdownSection(practiceHeading, post.today),
+    sourcesBlock
+  ].join('\n\n')
+}
+
+function renderDebugBody(post) {
+  const variant = hashCode(post.slug) % 4
+  const intros = [
+    '这个问题最麻烦的地方，是表面现象和真正根因经常不在同一层。下面按一次实际排查的顺序来走。',
+    '遇到这类报错时，先别急着改配置。稳定复现、缩小范围，通常比在搜索结果里反复复制答案更快。',
+    '我把这类问题拆成了“看到什么、怎么定位、最后改哪里”三部分。下次再遇到，可以直接照着检查。',
+    '这类 Bug 很少靠一行代码彻底解决。修复现场问题之外，还要把缓存、生命周期或发布流程一起补上。'
+  ]
+  const source = markdownSection('相关资料', references(post.refs))
+
+  if (variant === 0) {
+    return [
+      intros[variant],
+      markdownSection('现场通常是什么样', bulletList(post.symptoms)),
+      renderExample(post),
+      markdownSection('我会先查这几个位置', numberedList(post.steps)),
+      markdownSection('最后发现的高频根因', bulletList(post.causes)),
+      markdownSection('修复和收尾', numberedList(post.fixes) + '\n\n' + post.prevent),
+      source
+    ].join('\n\n')
+  }
+
+  if (variant === 1) {
+    return [
+      intros[variant],
+      markdownSection('先确认是不是同一个问题', bulletList(post.symptoms)),
+      markdownSection('不要跳过最小复现', numberedList(post.steps)),
+      renderExample(post),
+      markdownSection('根因通常藏在这里', bulletList(post.causes)),
+      markdownSection('我最后会这样改', numberedList(post.fixes)),
+      post.prevent,
+      source
+    ].join('\n\n')
+  }
+
+  if (variant === 2) {
+    return [
+      intros[variant],
+      markdownSection('从现象开始缩小范围', numberedList(post.symptoms)),
+      markdownSection('排查过程', numberedList(post.steps)),
+      markdownSection('为什么会发生', post.causes.join('；') + '。'),
+      renderExample(post),
+      markdownSection('修完以后别漏掉这些事', bulletList(post.fixes) + '\n\n' + post.prevent),
+      source
+    ].join('\n\n')
+  }
+
+  return [
+    intros[variant],
+    markdownSection('先给结论', post.prevent),
+    markdownSection('出现过这些信号，就值得检查', bulletList(post.symptoms)),
+    renderExample(post),
+    markdownSection('沿着这条线查', numberedList(post.steps)),
+    markdownSection('根因与对应修复', bulletList(post.causes) + '\n\n' + numberedList(post.fixes)),
+    source
+  ].join('\n\n')
+}
+
 function renderHistory(post) {
   const year = post.date.slice(0, 4)
   const description = `${post.event.split('。')[0]}。梳理核心变化、工程影响与今天的实践建议。`
   return `---
-title: ${yaml(`${year} 前端技术演进：${post.title}`)}
+title: ${yaml(post.title)}
 date: ${post.date} 09:00:00
 tags:
   - 前端年鉴
@@ -479,46 +791,18 @@ tags:
 categories:
   - 前端年鉴
 description: ${yaml(description)}
-cover: /img/frontend-performance-cover.svg
+cover: ${coverUrl(post, 'chronicle')}
+top_img: ${coverUrl(post, 'chronicle')}
 toc: true
 ---
-
-> 这是一篇前端技术演进记录。重点不是罗列版本号，而是理解当时解决了什么问题，以及这些变化如何影响今天的工程实践。
-
-## 当时发生了什么
-
-${post.event}
-
-## 核心变化
-
-${post.changes.map((item) => `- ${item}`).join('\n')}
-
-## 为什么重要
-
-${post.impact}
-
-## 放到今天怎么实践
-
-${post.today}
-
-建议在真实项目中按以下顺序验证：
-
-1. 盘点当前版本、插件和运行环境，不带假设地记录现状。
-2. 建立最小可运行示例，确认新能力的边界和失败方式。
-3. 在测试或影子构建中比较行为、性能与最终产物。
-4. 保留回滚路径，再逐步扩大使用范围。
-
-## 参考资料
-
-${references(post.refs)}
+${renderHistoryBody(post)}
 `
 }
 
 function renderDebug(post) {
   const description = `${post.symptoms[0]}。从症状、根因、定位步骤到修复与预防，给出完整排查路径。`
-  const section = (title, items) => `## ${title}\n\n${items.map((item, index) => `${index + 1}. ${item}`).join('\n')}`
   return `---
-title: ${yaml(`前端疑难排查：${post.title}`)}
+title: ${yaml(post.title)}
 date: ${post.date} 14:00:00
 tags:
   - 前端排障
@@ -526,37 +810,26 @@ tags:
 categories:
   - 前端排障
 description: ${yaml(description)}
-cover: /img/frontend-performance-cover.svg
+cover: ${coverUrl(post, 'debug')}
+top_img: ${coverUrl(post, 'debug')}
 toc: true
 ---
-
-线上问题最怕“改一点试试看”。更可靠的方式是先稳定复现，再沿数据、时序、网络或渲染链路逐层缩小范围。
-
-${section('常见症状', post.symptoms)}
-
-${section('高概率根因', post.causes)}
-
-${section('定位步骤', post.steps)}
-
-${section('修复方案', post.fixes)}
-
-## 如何防止再次发生
-
-${post.prevent}
-
-修复完成后还应补充最小回归用例，并把关键上下文写进错误日志。只有能够在下一次自动发现同类问题，排障工作才算真正闭环。
-
-## 参考资料
-
-${references(post.refs)}
+${renderDebugBody(post)}
 `
 }
 
 fs.mkdirSync(postsDir, { recursive: true })
+fs.mkdirSync(coversDir, { recursive: true })
 
 for (const name of fs.readdirSync(postsDir)) {
   if (/^frontend-(chronicle|debug)-.*\.md$/.test(name)) {
     fs.unlinkSync(path.join(postsDir, name))
+  }
+}
+
+for (const name of fs.readdirSync(coversDir)) {
+  if (/^frontend-(chronicle|debug)-.*\.svg$/.test(name)) {
+    fs.unlinkSync(path.join(coversDir, name))
   }
 }
 
@@ -566,6 +839,7 @@ for (const post of history) {
     path.join(postsDir, `frontend-chronicle-${yearMonth}-${post.slug}.md`),
     renderHistory(post)
   )
+  fs.writeFileSync(path.join(coversDir, coverName(post, 'chronicle')), renderCover(post, 'chronicle'))
 }
 
 for (const post of debugGuides) {
@@ -573,6 +847,7 @@ for (const post of debugGuides) {
     path.join(postsDir, `frontend-debug-${post.slug}.md`),
     renderDebug(post)
   )
+  fs.writeFileSync(path.join(coversDir, coverName(post, 'debug')), renderCover(post, 'debug'))
 }
 
-console.log(`Generated ${history.length} chronicle posts and ${debugGuides.length} debugging guides.`)
+console.log(`Generated ${history.length} chronicle posts, ${debugGuides.length} debugging guides, and ${history.length + debugGuides.length} unique covers.`)
