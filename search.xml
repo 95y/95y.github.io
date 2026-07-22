@@ -86,17 +86,6 @@
     
     
     <entry>
-      <title>关于我</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<p>你好，我是 <strong>Chili Hong</strong>，一名前端开发者。</p><p>我喜欢把开发中遇到的问题拆开、验证、复盘，再整理成可以重复使用的方法。这个博客既是个人知识库，也是我与更多开发者交流的窗口。</p><h2 id="我关注的方向"><a href="#我关注的方向" class="headerlink" title="我关注的方向"></a>我关注的方向</h2><ul><li>JavaScript、TypeScript 与现代前端框架</li><li>前端工程化、构建工具与质量体系</li><li>Web 性能、可访问性与用户体验</li><li>AI 辅助开发与效率工具</li><li>真实项目中的问题定位和架构取舍</li></ul><h2 id="关于这个博客"><a href="#关于这个博客" class="headerlink" title="关于这个博客"></a>关于这个博客</h2><p>本站使用 <a href="https://hexo.io/">Hexo</a> 构建，采用 <a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a> 主题，源码保存在 <code>main</code> 分支，静态站点发布到 <code>gh-pages</code> 分支。</p><p>我希望这里的文章尽量做到三点：</p><ol><li>给出问题发生的背景，而不只展示最终代码。</li><li>解释方案背后的取舍，而不把工具当成标准答案。</li><li>提供可以直接实践和验证的步骤。</li></ol><h2 id="找到我"><a href="#找到我" class="headerlink" title="找到我"></a>找到我</h2><p>你可以通过 <a href="https://github.com/95y">GitHub @95y</a> 找到我。</p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>标签</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
@@ -108,22 +97,22 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
-        <content type="html"><![CDATA[:root {  --site-primary: #2563eb;  --site-secondary: #7c3aed;  --site-accent: #06b6d4;  --site-text: #1e293b;  --site-muted: #64748b;  --site-border: rgba(148, 163, 184, 0.28);  --site-surface: rgba(255, 255, 255, 0.88);  --site-shadow: 0 16px 48px rgba(15, 23, 42, 0.10);  --site-radius: 18px;  --font-color: var(--site-text);  --theme-color: var(--site-primary);  --text-highlight-color: var(--site-primary);  --card-bg: var(--site-surface);  --global-bg: #f8fafc;}[data-theme='dark'] {  --site-primary: #60a5fa;  --site-secondary: #a78bfa;  --site-accent: #22d3ee;  --site-text: #e2e8f0;  --site-muted: #a3b1c6;  --site-border: rgba(148, 163, 184, 0.18);  --site-surface: rgba(15, 23, 42, 0.88);  --site-shadow: 0 20px 56px rgba(0, 0, 0, 0.30);  --font-color: var(--site-text);  --theme-color: var(--site-primary);  --text-highlight-color: var(--site-primary);  --card-bg: var(--site-surface);  --global-bg: #0b1120;}html {  scroll-behavior: smooth;}body {  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;  font-size: 16px;  line-height: 1.7;  background:    radial-gradient(circle at 8% 12%, rgba(37, 99, 235, 0.10), transparent 28rem),    radial-gradient(circle at 92% 88%, rgba(124, 58, 237, 0.09), transparent 30rem),    var(--global-bg);}a,button,[role='button'] {  touch-action: manipulation;}a:focus-visible,button:focus-visible,input:focus-visible {  outline: 3px solid rgba(37, 99, 235, 0.45);  outline-offset: 3px;}#page-header:not(.not-top-img)::before {  background: linear-gradient(115deg, rgba(2, 6, 23, 0.34), rgba(30, 64, 175, 0.18));}#page-header #site-title {  letter-spacing: -0.035em;  text-shadow: 0 8px 32px rgba(2, 6, 23, 0.34);}#page-header #site-subtitle {  max-width: 46rem;  margin-inline: auto;  line-height: 1.6;}#nav {  min-height: 64px;  backdrop-filter: blur(14px) saturate(130%);  -webkit-backdrop-filter: blur(14px) saturate(130%);}#nav .menus_items .menus_item > a,#nav #site-name {  font-weight: 600;  letter-spacing: 0.01em;}#recent-posts > .recent-post-item,.card-widget,.layout > div:first-child:not(.recent-posts),#post,#page,#archive {  border: 1px solid var(--site-border);  border-radius: var(--site-radius);  box-shadow: var(--site-shadow);  backdrop-filter: blur(14px);  -webkit-backdrop-filter: blur(14px);}#recent-posts > .recent-post-item {  overflow: hidden;  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;}#recent-posts > .recent-post-item:hover {  transform: translateY(-4px);  border-color: rgba(37, 99, 235, 0.38);  box-shadow: 0 22px 56px rgba(37, 99, 235, 0.14);}.recent-post-info .article-title {  font-weight: 700;  letter-spacing: -0.02em;}#aside-content .card-widget {  margin-top: 20px;}#aside-content .card-info #card-info-btn {  min-height: 44px;  border-radius: 12px;  background: linear-gradient(135deg, var(--site-primary), var(--site-secondary));  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.24);  transition: transform 180ms ease, box-shadow 180ms ease;}#aside-content .card-info #card-info-btn:hover {  transform: translateY(-2px);  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.30);}#article-container {  color: var(--site-text);  font-size: 1rem;  line-height: 1.82;}#article-container p,#article-container li {  max-width: 76ch;}#article-container h2,#article-container h3 {  letter-spacing: -0.02em;  scroll-margin-top: 88px;}#article-container a:not(.headerlink) {  color: var(--site-primary);  text-decoration: underline;  text-decoration-color: rgba(37, 99, 235, 0.35);  text-underline-offset: 0.22em;}#article-container blockquote {  border-radius: 0 12px 12px 0;  border-left-width: 4px;}#article-container table {  display: table;  width: 100%;  overflow: hidden;  border-radius: 12px;}#article-container figure.highlight,#article-container pre {  border-radius: 14px;}#rightside > div > button,#rightside > div > a {  min-width: 44px;  min-height: 44px;  border-radius: 12px;}#footer {  background: transparent;}#footer-wrap {  color: var(--site-muted);}@media (max-width: 768px) {  body {    font-size: 16px;  }  #page-header.full_page {    min-height: 68dvh;  }  #recent-posts > .recent-post-item,  .layout > div:first-child:not(.recent-posts),  #post,  #page,  #archive {    border-radius: 14px;  }  #article-container {    line-height: 1.74;  }  #article-container table {    display: block;    overflow-x: auto;  }}@media (prefers-reduced-motion: reduce) {  html {    scroll-behavior: auto;  }  *,  *::before,  *::after {    scroll-behavior: auto !important;    animation-duration: 0.01ms !important;    animation-iteration-count: 1 !important;    transition-duration: 0.01ms !important;  }}]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>关于我</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>你好，我是 <strong>Chili Hong</strong>，一名前端开发者。</p><p>我喜欢把开发中遇到的问题拆开、验证、复盘，再整理成可以重复使用的方法。这个博客既是个人知识库，也是我与更多开发者交流的窗口。</p><h2 id="我关注的方向"><a href="#我关注的方向" class="headerlink" title="我关注的方向"></a>我关注的方向</h2><ul><li>JavaScript、TypeScript 与现代前端框架</li><li>前端工程化、构建工具与质量体系</li><li>Web 性能、可访问性与用户体验</li><li>AI 辅助开发与效率工具</li><li>真实项目中的问题定位和架构取舍</li></ul><h2 id="关于这个博客"><a href="#关于这个博客" class="headerlink" title="关于这个博客"></a>关于这个博客</h2><p>本站使用 <a href="https://hexo.io/">Hexo</a> 构建，采用 <a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a> 主题，源码保存在 <code>main</code> 分支，静态站点发布到 <code>gh-pages</code> 分支。</p><p>我希望这里的文章尽量做到三点：</p><ol><li>给出问题发生的背景，而不只展示最终代码。</li><li>解释方案背后的取舍，而不把工具当成标准答案。</li><li>提供可以直接实践和验证的步骤。</li></ol><h2 id="找到我"><a href="#找到我" class="headerlink" title="找到我"></a>找到我</h2><p>你可以通过 <a href="https://github.com/95y">GitHub @95y</a> 找到我。</p>]]></content>
       
     </entry>
     
