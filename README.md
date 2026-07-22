@@ -29,12 +29,7 @@ npm run new -- "文章标题"
 
 - `前端年鉴`：从 2017 年 4 月 jQuery 开始，记录 2017–2026 的关键技术演进
 - `前端排障`：整理事件循环、响应式、模块系统、缓存、水合与内存泄漏等常见难题
-
-专题源数据与生成模板位于 `tools/generate-frontend-chronicle.mjs`。需要重新生成时运行：
-
-```bash
-npm run generate:chronicle
-```
+- 专题文章均为独立 Markdown 正文，直接在 `source/_posts` 中逐篇维护，不使用批量正文生成器
 
 ## 构建
 
