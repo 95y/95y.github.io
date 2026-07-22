@@ -4,5 +4,4 @@ date: 2026-07-22 16:00:00
 type: categories
 comments: false
 description: 按主题分类浏览博客文章。
-top_img: /img/site-cover.svg
 ---

@@ -5,7 +5,6 @@ updated: 2026-07-22 17:10:00
 type: about
 comments: false
 description: 关于 Chili Hong，以及这个博客关注的技术方向。
-top_img: /img/site-cover.svg
 ---
 
 你好，我是 **Chili Hong**，一名前端开发者。
